@@ -19,9 +19,16 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'firstname',
         'email',
-        'password',
+        'hashed_password',
+        'service_id'
     ];
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
