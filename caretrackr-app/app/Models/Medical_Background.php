@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Medical_Background extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['label'];
+
+    public function patients()
+    {
+        return $this->hasMany(Patient::class);
+    }
 }

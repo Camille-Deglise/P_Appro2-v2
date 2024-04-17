@@ -20,12 +20,10 @@ class Patient extends Model
         'avs_number',
         'city',
         'country',
-        'health_status',
-        'user_id',
 
     ] ;
 
-    public function user()
+    public function users()
     {
         return $this->belongsTo(User::class);
     }
@@ -35,5 +33,29 @@ class Patient extends Model
         return $this->belongsTo(Health_Status::class);
     }
 
+    public function services()
+    {
+        return $this->belongsToMany(Service::class);
+    }
+
+    public function medications()
+    {
+        return $this->belongsToMany(Medication::class);
+    }
+
+    public function allergies()
+    {
+        return $this->belongsToMany(Allergy::class);
+    }
+
+    public function medical_background()
+    {
+        return $this->belongsToMany(Medical_Background::class);
+    }
+
+    public function mesured_values()
+    {
+        return $this->hasMany(Mesured_Value::class);
+    }
     
 }

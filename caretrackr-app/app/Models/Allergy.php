@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Allergy extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['label'];
+
+    public function patients()
+    {
+        return $this->hasMany(Patient::class);
+    }
 }
