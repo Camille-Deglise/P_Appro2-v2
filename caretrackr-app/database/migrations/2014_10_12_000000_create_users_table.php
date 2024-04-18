@@ -15,11 +15,14 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('firstname');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table ->foreignIdFor(Service::class)->constrained()->cascadeOnDelete();
             $table->string('hashed_password');
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            
         });
         
     }
@@ -29,6 +32,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeignIdFor(Service::class);
+        });
         Schema::dropIfExists('users');
     }
 };

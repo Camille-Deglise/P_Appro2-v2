@@ -21,8 +21,8 @@ class User extends Authenticatable
         'name',
         'firstname',
         'email',
+        'service_id',
         'hashed_password',
-        'service_id'
     ];
 
     public function services()

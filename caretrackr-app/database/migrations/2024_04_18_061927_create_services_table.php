@@ -17,16 +17,14 @@ return new class extends Migration
             $table->string('name');
             $table->timestamps();
         });
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreignIdFor(Service::class)->constrained()->cascadeOnDelete();
-        });
+       
         Schema::create('patient_service', function (Blueprint $table) {
             $table->foreignIdFor(Patient::class)->constrained()->cascadeOnUpdate();
             $table->foreignIdFor(Service::class)->constrained()->cascadeOnDelete();
             $table->primary(['patient_id','service_id']);
-            $table->text('reason_hospitalization')->constrained()->cascadeOnDelete();
-            $table->date('date_entry')->constrained()->cascadeOnDelete();
-            $table->date('date_discharge')->constrained()->cascadeOnDelete();
+            $table->text('reason_hospitalization');
+            $table->date('date_entry');
+            $table->date('date_discharge');
         });
     }
 
@@ -35,9 +33,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropForeignIdFor(Service::class);
-        });
+       
         Schema::dropIfExists('services');
     }
 };
