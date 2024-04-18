@@ -1,5 +1,4 @@
 <?php
-
 use App\Models\Patient;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -26,19 +25,20 @@ return new class extends Migration
             $table->string('country');
             $table->timestamps();
         });
-        //Schema::table('mesured_values', function (Blueprint $table) {
-        //    $table->foreignIdFor(Patient::class)->constrained()->cascadeOnDelete();
-        //});
-    }   
+
+        Schema::table('mesured_values', function (Blueprint $table) {
+            $table->foreignIdFor(Patient::class)->constrained()->cascadeOnDelete();
+        });
+    }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
+        Schema::table('mesured_values', function (Blueprint $table) {
+            $table->dropForeignIdFor(Patient::class);
+          });
         Schema::dropIfExists('patients');
-        //Schema::table('mesured_values', function (Blueprint $table) {
-        //    $table->dropForeignIdFor(Patient::class);
-        //});
     }
 };

@@ -1,5 +1,4 @@
 <?php
-
 use App\Models\Health_Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -12,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('health_status', function (Blueprint $table) {
+        Schema::create('health_statuses', function (Blueprint $table) {
             $table->id();
+            $table->string('label');
             $table->timestamps();
         });
 
-        Schema::table('patients', function (Blueprint $table) {
-            $table->foreignIdFor(Health_Status::class)->constrained()->cascadeOnDelete();
-        });
+       
     }
 
     /**
@@ -27,9 +25,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('health_status');
-        Schema::table('patients', function (Blueprint $table) {
-            $table->dropForeignIdFor(Health_Status::class);
-        });
+        
+        Schema::dropIfExists('health_statuses');
     }
 };

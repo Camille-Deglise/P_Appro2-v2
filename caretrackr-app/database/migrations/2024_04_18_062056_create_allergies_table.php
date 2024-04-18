@@ -1,5 +1,4 @@
 <?php
-
 use App\Models\Allergy;
 use App\Models\Patient;
 use Illuminate\Database\Migrations\Migration;

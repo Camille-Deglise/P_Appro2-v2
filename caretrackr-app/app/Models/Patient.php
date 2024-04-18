@@ -48,14 +48,14 @@ class Patient extends Model
         return $this->belongsToMany(Allergy::class);
     }
 
-    public function medical_background()
+    public function medical_histories()
     {
-        return $this->belongsToMany(Medical_Background::class);
+        return $this->belongsToMany(MedicalHistory::class);
     }
 
     public function mesured_values()
     {
-        return $this->hasMany(Mesured_Value::class);
+        return $this->hasMany(MesuredValue::class);
     }
     
 }

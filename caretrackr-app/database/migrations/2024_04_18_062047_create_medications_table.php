@@ -1,6 +1,6 @@
 <?php
 use App\Models\Patient;
-use App\Models\Medical_Background;
+use App\Models\Medication;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,17 +12,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('medical_backgroud', function (Blueprint $table) {
+        Schema::create('medications', function (Blueprint $table) {
             $table->id();
             $table->string('label');
             $table->timestamps();
         });
-
-        Schema::create('medical_background_patient', function (Blueprint $table) {
-            $table->foreignIdFor(Medical_Background::class)->constrained()->cascadeOnDelete();
+        Schema::create('medication_patient', function (Blueprint $table) {
+            $table->foreignIdFor(Medication::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Patient::class)->constrained()->cascadeOnUpdate();
-            $table->primary(['medication_background_id','patient_id']);
-        });
+            $table->primary(['medication_id','patient_id']);
+		});
     }
 
     /**
@@ -30,7 +29,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('medical_background_patient');
-        Schema::dropIfExists('medical_backgroud');
+        Schema::dropIfExists('medication_patient');
+        Schema::dropIfExists('medications');
     }
 };

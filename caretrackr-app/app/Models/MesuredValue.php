@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Mesured_Value extends Model
+class MesuredValue extends Model
 {
     use HasFactory;
     protected $fillable = [
