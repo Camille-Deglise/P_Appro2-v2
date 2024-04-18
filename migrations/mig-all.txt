@@ -1,0 +1,16 @@
+ Schema::create('allergies', function (Blueprint $table) {
+            $table->id();
+            $table->string('label');
+            $table->timestamps();
+        });
+
+        Schema::create('allergy_patient', function (Blueprint $table) {
+            $table->foreignIdFor(Allergy::class)->constrained()->cascadeOnUpdate();
+            $table->foreignIdFor(Patient::class)->constrained()->cascadeOnDelete();
+            $table->primary(['allergy_id','patient_id']);
+        });
+		
+  ------
+  
+  Schema::dropIfExists('allergy_patient');
+        Schema::dropIfExists('allergies');

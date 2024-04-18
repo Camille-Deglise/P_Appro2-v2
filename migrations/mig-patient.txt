@@ -1,0 +1,25 @@
+Schema::create('patients', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('firstname');
+            $table->tinyInteger('gender');
+            $table->string('insurance');
+            $table->string('avs_number');
+            $table->integer('road_number');
+            $table->string('road');
+            $table->integer('npa');
+            $table->string('city');
+            $table->string('country');
+            $table->timestamps();
+        });
+        Schema::table('mesured_values', function (Blueprint $table) {
+            $table->foreignIdFor(Patient::class)->constrained()->cascadeOnDelete();
+        });
+		
+		--------------------------------
+		
+		 Schema::dropIfExists('patients');
+        Schema::table('mesured_values', function (Blueprint $table) {
+          $table->dropForeignIdFor(Patient::class);
+        });
+		

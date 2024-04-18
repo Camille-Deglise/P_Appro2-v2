@@ -1,0 +1,15 @@
+Schema::create('medications', function (Blueprint $table) {
+            $table->id();
+            $table->string('label');
+            $table->timestamps();
+        });
+        Schema::create('medication_patient', function (Blueprint $table) {
+            $table->foreignIdFor(Medication::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Patient::class)->constrained()->cascadeOnUpdate();
+            $table->primary(['medication_id','patient_id']);
+		});
+		
+	-------
+	Schema::dropIfExists('medication_patient');
+        Schema::dropIfExists('medications');
+	
