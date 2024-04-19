@@ -1,4 +1,6 @@
-Schema::create('medications', function (Blueprint $table) {
+ public function up(): void
+    {
+        Schema::create('medications', function (Blueprint $table) {
             $table->id();
             $table->string('label');
             $table->timestamps();
@@ -8,8 +10,13 @@ Schema::create('medications', function (Blueprint $table) {
             $table->foreignIdFor(Patient::class)->constrained()->cascadeOnUpdate();
             $table->primary(['medication_id','patient_id']);
 		});
-		
-	-------
-	Schema::dropIfExists('medication_patient');
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('medication_patient');
         Schema::dropIfExists('medications');
-	
+    }

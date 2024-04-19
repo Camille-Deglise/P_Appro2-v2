@@ -1,26 +1,26 @@
-Schema::create('services', function (Blueprint $table) {
-            $table->id('service_id');
+public function up(): void
+    {
+        Schema::create('services', function (Blueprint $table) {
+            $table->id();
             $table->string('name');
             $table->timestamps();
         });
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreignIdFor(Service::class)->constrained()->cascadeOnDelete();
-        });
+       
         Schema::create('patient_service', function (Blueprint $table) {
             $table->foreignIdFor(Patient::class)->constrained()->cascadeOnUpdate();
             $table->foreignIdFor(Service::class)->constrained()->cascadeOnDelete();
             $table->primary(['patient_id','service_id']);
-            $table->text('reason_hospitalization')->constrained()->cascadeOnDelete();
-            $table->date('date_entry')->constrained()->cascadeOnDelete();
-            $table->date('date_discharge')->constrained()->cascadeOnDelete();
+            $table->text('reason_hospitalization');
+            $table->date('date_entry');
+            $table->date('date_discharge');
         });
-		
-	----------------
-	
-	Schema::dropIfExists('patient_service');
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+       
         Schema::dropIfExists('services');
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropForeignIdFor(Service::class);
-        });
-	
+    }

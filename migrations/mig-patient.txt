@@ -1,4 +1,6 @@
-Schema::create('patients', function (Blueprint $table) {
+public function up(): void
+    {
+        Schema::create('patients', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('firstname');
@@ -10,16 +12,19 @@ Schema::create('patients', function (Blueprint $table) {
             $table->integer('npa');
             $table->string('city');
             $table->string('country');
+            $table->foreignIdFor(Health_Status::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
-        Schema::table('mesured_values', function (Blueprint $table) {
-            $table->foreignIdFor(Patient::class)->constrained()->cascadeOnDelete();
+
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('patients', function (Blueprint $table) {
+            $table->dropForeignIdFor(Health_Status::class);
         });
-		
-		--------------------------------
-		
-		 Schema::dropIfExists('patients');
-        Schema::table('mesured_values', function (Blueprint $table) {
-          $table->dropForeignIdFor(Patient::class);
-        });
-		
+        Schema::dropIfExists('patients');
+    }

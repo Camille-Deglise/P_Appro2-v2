@@ -1,16 +1,19 @@
-Schema::create('health_status', function (Blueprint $table) {
+    public function up(): void
+    {
+        Schema::create('health_statuses', function (Blueprint $table) {
             $table->id();
+            $table->string('label');
             $table->timestamps();
         });
 
-        Schema::table('patients', function (Blueprint $table) {
-            $table->foreignIdFor(Health_Status::class)->constrained()->cascadeOnDelete();
-        });
-		
-		
-		-------------------
-	
-        Schema::dropIfExists('health_status');
-        Schema::table('patients', function (Blueprint $table) {
-            $table->dropForeignIdFor(Health_Status::class);
-        });
+       
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        
+        Schema::dropIfExists('health_statuses');
+    }
