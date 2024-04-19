@@ -28,18 +28,23 @@
         id="email" name="email" type="email" value="Entrer un email valide">
     </div>
     <div class="mb-6 flex items-center">
-      <label class="block text-gray-500 font-bold mr-4" for="service_id" style="min-width: 100px;">
-        Service
+      <label class="block text-gray-500 font-bold mr-4" for="service" style="min-width: 100px;">
+          Service
       </label>
-      <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-grey-500" 
-        id="service_id" name="service_id" type="text" value="Entrer le service dans lequel vous travaillez">
-    </div>
+      <select name="service" id="service" class="form-control" required>
+        <option value="">Sélectionnez un service</option>
+        @foreach($services as $service)
+            <option value="{{ $service->id }}">{{ $service->name }}</option>
+        @endforeach
+    </select>
+  </div>
+
     <div class="mb-6 flex items-center">
       <label class="block text-gray-500 font-bold mr-4" for="password" style="min-width: 100px;">
         Mot de passe
       </label>
       <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-grey-500" 
-        id="hashed_password" name="hashed_password" type="password" value="****">
+        id="password" name="password" type="password" value="****">
     </div>
     <div class="md:flex md:items-center">
       <div class="md:w-1/3"></div>

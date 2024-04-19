@@ -14,29 +14,29 @@ class RegisterController extends Controller
 {
     public function showRegistrationForm()
     {
-        return view("site.register");
+        $services = Service::all();
+        return view("site.register", ['services'=>$services]);
     }
 
     public function storeDB(RegisterRequest $request)
     {
-        //Reprendre les données de la requête validée dans le RegisterRequest
-        $validatedData = $request ->validated();
-
-        //Récupérer l'id du service ou créer un nouveau service avec son nom 
-        $service = Service::firstOrCreate(['name' => $validatedData['service']]);
-
-
-        $user = User::create([
-            'name' => $validatedData['name'],
-            'firstname' => $validatedData['firstname'],
-            'email' => $validatedData['email'],
-            'hashed_password' =>Hash::make($validatedData['hashed_password']),
-            'service_id' => $service ->id
-        ]);
-
+        
+         //Reprendre les données de la requête validée dans le RegisterRequest
+         $validatedData = $request ->validated();
+        
+        //Création de l'utilisateur 
+         $user = User::create([
+           'name' => $validatedData['name'],
+           'firstname' => $validatedData['firstname'],
+           'email' => $validatedData['email'],
+           'password' =>Hash::make($validatedData['password']),
+           'service_id' => $validatedData['service']
+         ]);
+        
             //permet d'effectuer un nouvel événement d'enregistrement (de base dans Laravel) du $user afin de pouvoir par 
             //après utiliser la vérification d'email. 
             event(new Registered($user));
+            
             
             return redirect()->route("login")->with("success",
             "Votre inscription s'est bien effectuée. Vérifier votre lien par email pour pouvoir vous connecter");

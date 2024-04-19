@@ -25,8 +25,8 @@ class RegisterRequest extends FormRequest
             'name' => ['required', 'string', 'regex:/^[-a-zA-ZÀ-ÿ]+$/'],
             'firstname' => ['required', 'string', 'regex:/^[-a-zA-ZÀ-ÿ]+$/'],
             'email'=> ['required','email'], 
-            'service' => ['required', 'string'],
-            'hashed_password'=> ['required', 'min:4'],
+            'service' => ['required', 'exists:services,id'],
+            'password'=> ['required', 'min:4'],
         ];
     }
 }

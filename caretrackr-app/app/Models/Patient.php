@@ -30,7 +30,7 @@ class Patient extends Model
 
     public function health_status()
     {
-        return $this->belongsTo(Health_Status::class);
+        return $this->belongsTo(HealthStatus::class);
     }
 
     public function services()

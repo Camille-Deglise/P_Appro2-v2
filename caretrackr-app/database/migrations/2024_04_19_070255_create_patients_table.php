@@ -43,9 +43,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('patients', function (Blueprint $table) {
-            $table->dropForeignIdFor(HealthStatus::class);
-        });
+        
+        Schema::dropIfExists('patient_service');
         Schema::dropIfExists('patients');
     }
 };
