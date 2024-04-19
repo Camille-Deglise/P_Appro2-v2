@@ -1,7 +1,7 @@
 <?php
-
-use App\Models\Health_Status;
+use App\Models\HealthStatus;
 use App\Models\Patient;
+use App\Models\Service;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -25,10 +25,17 @@ return new class extends Migration
             $table->integer('npa');
             $table->string('city');
             $table->string('country');
-            $table->foreignIdFor(Health_Status::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
 
+        Schema::create('patient_service', function (Blueprint $table) {
+            $table->foreignIdFor(Patient::class)->constrained()->cascadeOnUpdate();
+            $table->foreignIdFor(Service::class)->constrained()->cascadeOnDelete();
+            $table->primary(['patient_id','service_id']);
+            $table->text('reason_hospitalization');
+            $table->date('date_entry');
+            $table->date('date_discharge');
+        });
     }
 
     /**
@@ -37,7 +44,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('patients', function (Blueprint $table) {
-            $table->dropForeignIdFor(Health_Status::class);
+            $table->dropForeignIdFor(HealthStatus::class);
         });
         Schema::dropIfExists('patients');
     }

@@ -4,6 +4,10 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Allergy;
+use App\Models\HealthStatus;
+use App\Models\MedicalHistory;
+use App\Models\Medication;
 use App\Models\Service;
 use Illuminate\Database\Seeder;
 
@@ -22,5 +26,10 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         Service::factory(7)->create();
+        Medication::factory(24)->create();
+        Allergy::factory(12)->create();
+        MedicalHistory::factory(10)->create();
+        HealthStatus::factory(4)->create();
+
     }
 }

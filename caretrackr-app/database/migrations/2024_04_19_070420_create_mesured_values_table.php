@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('pulse');
             $table->decimal('bloog_sugar', total:2, places:2);
             $table->dateTime('mesured_at');
-            $table->foreignIdFor(Patient::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Patient::class)->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

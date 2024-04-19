@@ -1,6 +1,5 @@
 <?php
-
-use App\Models\MedicalHistory;
+use App\Models\Medication;
 use App\Models\Patient;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,18 +12,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('medical_histories', function (Blueprint $table) {
+        Schema::create('medications', function (Blueprint $table) {
             $table->id();
             $table->string('label');
             $table->timestamps();
         });
-
-        Schema::create('medical_history_patient', function (Blueprint $table)
-        {
-            $table->foreignIdFor(MedicalHistory::class)->constrained()->cascadeOnDelete();
+        Schema::create('medication_patient', function (Blueprint $table) {
+            $table->foreignIdFor(Medication::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Patient::class)->constrained()->cascadeOnUpdate();
-            $table->primary(['medical_history_id','patient_id']);
-        });
+            $table->primary(['medication_id','patient_id']);
+		});
     }
 
     /**
@@ -32,7 +29,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('medical_history_patient');
-        Schema::dropIfExists('medical_histories');
+        Schema::dropIfExists('medication_patient');
+        Schema::dropIfExists('medications');
     }
 };

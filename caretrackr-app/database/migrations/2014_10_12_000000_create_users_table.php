@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('firstname');
             $table->string('email')->unique();
-            $table ->foreignIdFor(Service::class)->constrained()->cascadeOnDelete();
+            $table ->foreignIdFor(Service::class)->nullable()->constrained()->cascadeOnDelete();
             $table->string('hashed_password');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
