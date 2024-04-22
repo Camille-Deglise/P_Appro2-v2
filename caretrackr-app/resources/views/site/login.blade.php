@@ -32,12 +32,12 @@
         </div>
     </form>
     @if(session('error'))
-    <div class="alert alert-danger">{{ session('userNotFound') }}</div>
-@endif
+        <div class="alert alert-danger">{{ session('userNotFound') }}</div>
+    @endif
 
-@if(session('info'))
-    <div class="alert alert-info">{{ session('info') }}</div>
-@endif
+    @if(session('info'))
+        <div class="alert alert-info">{{ session('info') }}</div>
+    @endif
 
 
 @endsection

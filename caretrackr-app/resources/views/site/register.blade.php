@@ -11,21 +11,30 @@
         Nom 
       </label>
       <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-grey-500" 
-        id="name" name="name" type="text" value="Entrer un nom ">
+        id="name" name="name" type="text" value="Entrer un nom" required>
+        @error('name')
+          {{$message}}
+        @enderror
     </div>
     <div class="mb-6 flex items-center">
       <label class="block text-gray-500 font-bold mr-4" for="firstname" style="min-width: 100px;">
         Prénom
       </label>
       <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-grey-500" 
-        id="firstname" name="firstname" type="text" value="Entrer un prénom">
+        id="firstname" name="firstname" type="text" value="Entrer un prénom" required>
+        @error('firstname')
+          {{$message}}
+        @enderror
     </div>
     <div class="mb-6 flex items-center">
       <label class="block text-gray-500 font-bold mr-4" for="email" style="min-width: 100px;">
         Email
       </label>
       <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-grey-500" 
-        id="email" name="email" type="email" value="Entrer un email valide">
+        id="email" name="email" type="email" value="Entrer un email valide" required>
+        @error('email')
+          {{$message}}
+        @enderror
     </div>
     <div class="mb-6 flex items-center">
       <label class="block text-gray-500 font-bold mr-4" for="service" style="min-width: 100px;">
@@ -37,6 +46,9 @@
             <option value="{{ $service->id }}">{{ $service->name }}</option>
         @endforeach
     </select>
+    @error('serivce')
+          {{$message}}
+        @enderror
   </div>
 
     <div class="mb-6 flex items-center">
@@ -44,8 +56,11 @@
         Mot de passe
       </label>
       <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-grey-500" 
-        id="password" name="password" type="password" value="****">
+        id="password" name="password" type="password" value="****" required>
     </div>
+    @error('password')
+          {{$message}}
+    @enderror
     <div class="md:flex md:items-center">
       <div class="md:w-1/3"></div>
       <div class="md:w-2/3">
