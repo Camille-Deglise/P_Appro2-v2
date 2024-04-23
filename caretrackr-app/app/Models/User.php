@@ -28,6 +28,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at'
     ];
 
+    public function fullName()
+    {
+        return $this->name . ' ' . $this->firstname;
+    }
+    
     public function services()
     {
         return $this->belongsTo(Service::class, 'service_id');

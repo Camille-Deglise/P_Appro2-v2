@@ -15,7 +15,7 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $services = Service::all();
-        return view("site.register", ['services'=>$services]);
+        return view("auth.register", ['services'=>$services]);
     }
 
     public function storeDB(RegisterRequest $request)

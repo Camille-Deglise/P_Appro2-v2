@@ -25,12 +25,12 @@ class Patient extends Model
 
     public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function health_status()
     {
-        return $this->belongsTo(HealthStatus::class);
+        return $this->belongsTo(HealthStatus::class, 'health_status_id');
     }
 
     public function services()

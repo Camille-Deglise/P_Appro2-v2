@@ -17,28 +17,39 @@
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
                     <div class="flex-shrink-0 mr-6">
-                        <img src="{{ asset('img/logo.png') }}" alt="Logo CareTrackR" class="h-8 w-auto">
-                        <span class="text-gray-300 text-lg font-semibold">CareTrackR</span>
+                        <a href="{{ Auth::check() ? route('home') : redirect()->intended('/') }}">
+                            <img src="{{ asset('img/logo.png') }}" alt="Logo CareTrackR" class="h-8 w-auto">
+                            <span class="text-gray-300 text-lg font-semibold">CareTrackR</span>
+                        </a>
                     </div>
-                    <div class="flex space-x-4">
-                        <a href="{{route('register')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">S'inscrire</a>
-                        <a href="{{route('login')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Se connecter</a>
-                    </div>
+                @auth
+                <div class="flex space-x-4">
+                    <!-- Onlgets de la nav si l'utilisateur est connecté -->
+                    <a href="{{ route('monitoring') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Suivis de patients</a>
+                    <a href="{{ route('newForm') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Nouveau patient</a>
+                    <a href="{{ route('settings') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Mon profil</a>
                 </div>
             </div>
         </div>
+    </div>
         <div class="flex items-center">
-            <div class="flex-shrink-0 mr-6">
+             <div class="flex-shrink-0 mr-6 ml-auto" >
                 <span class="text-gray-300 text-lg font-semibold">
-                    @auth
-                        {{Auth::user()->name}}
+                        {{Auth::user()->fullName()}}
                         <form class="nav-item" action="{{route('logout')}}" method="POST">
                             @method('delete')
                             @csrf
                             <button class="nav-link">Se déconnecter</button>
-                    @endauth
-                </span>
+                 </span> 
             </div>
+            @endauth
+        @guest
+        <!-- Si l'utilisateur n'est pas connecté, afficher les liens S'inscrire et Se connecter -->
+        <div class="flex space-x-4">
+            <a href="{{ route('register') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">S'inscrire</a>
+            <a href="{{ route('login') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Se connecter</a>
+        </div>
+        @endguest
       </nav>
   </div>
       <div class="text-center py-4">
