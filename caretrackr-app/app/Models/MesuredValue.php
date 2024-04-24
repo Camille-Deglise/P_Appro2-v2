@@ -15,11 +15,11 @@ class MesuredValue extends Model
         'oxygen_saturation',
         'pulse',
         'bloog_sugar',
-        'mesure_at',
+        'mesured_at',
     ];
 
     public function patients()
     {
-        return $this->belongsTo(Patient::class);
+        return $this->belongsTo(Patient::class, 'patient_id');
     }
 }

@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('mesured_values', function (Blueprint $table) {
             $table->id();
-            $table->decimal('temperature', total:2, places: 2);
-            $table->integer('systole');
-            $table->integer('diastole');
-            $table->integer('oxygen_saturation');
-            $table->integer('pulse');
-            $table->decimal('bloog_sugar', total:2, places:2);
+            $table->decimal('temperature', total:3, places: 1)->nullable();
+            $table->integer('systole')->nullable();
+            $table->integer('diastole')->nullable();
+            $table->integer('oxygen_saturation')->nullable();
+            $table->integer('pulse')->nullable();
+            $table->decimal('bloog_sugar', total:3, places:2)->nullable();
             $table->dateTime('mesured_at');
             $table->foreignIdFor(Patient::class)->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();

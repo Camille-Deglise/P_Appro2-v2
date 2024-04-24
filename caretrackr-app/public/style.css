@@ -19,19 +19,41 @@ textarea {
     font-size: 12px;
     color: #6b7280;
 }
-.patient-card {
+
+/* Style pour le conteneur de la row */
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Style de base pour les encadrés */
+.encard {
+    flex: 1; /* Chaque encadré prend une part égale de l'espace disponible */
     border: 1px solid #ccc;
     border-radius: 5px;
-    padding: 15px;
+    padding: 20px;
     margin-bottom: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: start; /* Alignement vertical */
 }
 
-.patient-card strong {
-    font-weight: bold;
-    margin-bottom: 10px; /* Espacement entre les éléments */
+/* Style pour la liste des patients à gauche */
+.patient-list {
+    width: calc(50% - 30px); /* 50% de la largeur de la page moins les marges */
+    margin-right: 30px;
 }
 
+/* Style pour la liste des mesures à droite */
+.measurement-list {
+    width: calc(50% - 30px); /* 50% de la largeur de la page moins les marges */
+}
+
+/* Style pour l'encadré supplémentaire à droite */
+.graph-encard {
+    margin-right: 30px;
+}
+
+/* Ajout d'espace entre les éléments de la liste */
+.patient-card,
+.mesure-card {
+    margin-bottom: 20px;
+}
