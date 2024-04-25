@@ -6,9 +6,9 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\MonitoringController;
-use App\Http\Controllers\Site\NewFormController;
+use App\Http\Controllers\Site\PatientController;
 use App\Http\Controllers\Site\SettingsController;
-
+use App\Models\Patient;
 use Illuminate\Http\Request;
 
 /*
@@ -56,6 +56,8 @@ Route::get('/home',  [HomeController::class, 'index'])->name('home');
 
 
 /*Routes pour les onglets une fois l'utilisateur connecté*/
-Route::get('/monitoring',[MonitoringController::class, 'showMonitoring'])->name('monitoring');
-Route::get('/newForm', [NewFormController::class,'showNewForm'])->name('newForm');
+//Route::get('/monitoring/{patient}',[HomeController::class, 'getNavbarPatients'])->name('monitoring.show');
+Route::get('/monitoring', [MonitoringController::class, 'showMonitoring'])->name('monitoring');
+
 Route::get('/settings', [SettingsController::class,'showSettings'])->name('settings');
+Route::resource('patient', PatientController::class);

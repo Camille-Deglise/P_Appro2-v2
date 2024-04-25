@@ -25,8 +25,8 @@
                 @auth
                 <div class="flex space-x-4">
                     <!-- Onlgets de la nav si l'utilisateur est connecté -->
-                    <a href="{{ route('monitoring') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Suivis de patients</a>
-                    <a href="{{ route('newForm') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Nouveau patient</a>
+                    <a href="{{route('monitoring')}}"class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Suivis de mes patients</a>
+                    <a href="{{ route('patient.create') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Ajouter patient</a>
                     <a href="{{ route('settings') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Mon profil</a>
                 </div>
             </div>

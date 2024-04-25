@@ -8,12 +8,15 @@
         <div class="row">
             <!-- Liste des patients -->
             <div class="patient-list encard">
-                <h1>Liste des 5 derniers patients</h1>
+                <h1>Liste des patients suivis</h1>
                 @foreach($patients as $patient)
                     <div class="patient-card">
                         <strong>Nom:</strong> {{ $patient->name }} <br>
                         <strong>Prénom:</strong> {{ $patient->firstname }} <br>
-                        <strong>Statut de santé:</strong> {{ $patient->health_status_label ?? 'Non défini' }}
+                        <strong>Statut de santé:</strong> {{ $patient->health_status_label}}
+                        <p>
+                            <a href="{{route('monitoring', ['id' => $patient->id])}}">Voir le suivi complet</a>
+                        </p>
                     </div>
                 @endforeach
             </div>

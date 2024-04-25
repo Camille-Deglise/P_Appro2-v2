@@ -38,6 +38,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Service::class, 'service_id');
     }
 
+    public function patients()
+    {
+        return $this->hasMany(Patient::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
