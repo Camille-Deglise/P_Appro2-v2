@@ -1,0 +1,15 @@
+Barre de navigation avec liste déroulante
+         @php
+                            $navbarPatients = (new \App\Http\Controllers\Site\HomeController())->getNavbarPatients();
+                        @endphp
+                    @if ($navbarPatients)
+                        <div class ='dropdown'>
+                            <button class='monitoring-list'>Suivi de patients</button>
+                            <div class="dropchild">
+                                @foreach ($navbarPatients as $patient)
+                                    <a href="{{ route('monitoring.show', $patient->id) }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                                        {{$patient->patient_name}} {{$patient->patient_firstname}}</a>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
