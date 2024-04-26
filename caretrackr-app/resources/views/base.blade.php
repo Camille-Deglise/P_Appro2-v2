@@ -25,7 +25,7 @@
                 @auth
                 <div class="flex space-x-4">
                     <!-- Onlgets de la nav si l'utilisateur est connecté -->
-                    <a href="{{route('monitoring')}}"class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Suivis de mes patients</a>
+                    {{-- <a href="{{route('monitoring')}}"class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Suivis de mes patients</a> --}}
                     <a href="{{ route('patient.create') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Ajouter patient</a>
                     <a href="{{ route('settings') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Mon profil</a>
                 </div>
@@ -37,9 +37,10 @@
                 <span class="text-gray-300 text-lg font-semibold">
                         {{Auth::user()->fullName()}}
                         <form class="nav-item" action="{{route('logout')}}" method="POST">
-                            @method('delete')
+                            @method('delete') 
                             @csrf
                             <button class="nav-link">Se déconnecter</button>
+                        </form>
                  </span> 
             </div>
             @endauth
@@ -56,18 +57,29 @@
         <h1 class="text-4xl font-semibold">@yield('page-title')</h1>
       </div>
     <div class="content container mx-auto px-4 py-8">
-     @yield('content')
-     @if (session('success'))
-        <div class="alert alert-success text-gray-800 text-lg font-semibold">
-            {{session('success')}}
-        </div>
+        @if (session('success'))
+            <div class="alert alert-success text-gray-800 text-lg font-semibold">
+                {{session('success')}}
+            </div>
         @endif
         @if(session('message'))
-        <div class="alert alert-success text-gray-800 text-lg font-semibold">
-            {{session('message')}}
-        </div>
+            <div class="alert alert-success text-gray-800 text-lg font-semibold">
+                {{session('message')}}
+            </div>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>  
         @endif
     </div>
+
+    
+    @yield('content')
 </body>
 
 <footer class="bg-gray-800 p-6">

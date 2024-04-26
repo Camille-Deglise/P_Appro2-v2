@@ -15,8 +15,9 @@
                         <strong>Prénom:</strong> {{ $patient->firstname }} <br>
                         <strong>Statut de santé:</strong> {{ $patient->health_status_label}}
                         <p>
-                            <a href="{{route('monitoring', ['id' => $patient->id])}}">Voir le suivi complet</a>
-                        </p>
+                            <a href="{{ route('monitoring', ['id' => $patient->id]) }}">Voir le suivi complet</a>
+                        </p> 
+                        
                     </div>
                 @endforeach
             </div>
@@ -28,7 +29,7 @@
                     <div class="mesure-card">
                          
                         <strong>Patient:</strong> 
-                             {{$mesure->patient_name}} {{ $mesure->patient_firstname }} <br>
+                            {{$mesure->patient_name}} {{ $mesure->patient_firstname }} <br>
                         <strong>Type:</strong> <br>
                         @if($mesure->temperature)
                             Température: {{ $mesure->temperature }}°C <br>

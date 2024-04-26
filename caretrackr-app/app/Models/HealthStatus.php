@@ -10,11 +10,12 @@ class HealthStatus extends Model
     use HasFactory;
 
     protected $fillable = [
-        'label'
+        'label',
+        
     ];
 
     public function patients()
     {
-        return $this->belongsTo(Patient::class);
+        return $this->hasMany(Patient::class);
     }
 }

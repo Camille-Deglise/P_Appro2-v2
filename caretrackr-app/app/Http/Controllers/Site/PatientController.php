@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Site;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PatientFormRequest;
 use App\Models\Allergy;
@@ -29,14 +29,15 @@ class PatientController extends Controller
         $patient = new Patient();
         $services = Service::all();
         $medications = Medication::all();
-        $health_statuses = HealthStatus::all();
+        $health_statuses_id = HealthStatus::all();
         $allergies = Allergy::all();
         $medical_histories = MedicalHistory::all();
+
         return view('site.create', 
         [   
             'patient' => $patient,
             'services'=>$services, 
-            'health_statuses' =>$health_statuses,
+            'health_statuses_id' =>$health_statuses_id,
             'medications'=>$medications,
             'allergies' => $allergies,
             'medical_histories' => $medical_histories
@@ -48,11 +49,26 @@ class PatientController extends Controller
      */
     public function store(PatientFormRequest $request)
     {
-        $patient =Patient::create($request->validated());
-        $patient->services()->sync($request->validated('services'));
-        $patient->medical_histories()->sync($request->validated('medical_histories'));
-        $patient->medications()->sync($request->validated('medications'));
-        $patient->allergies()->sync($request->validated('allergy'));
+        //dd($request);
+        $health_status_id = $request->input('health_status_id');
+        $user_id = auth()->id();
+        
+        $validatedData = $request->validated();
+        
+        
+        $validatedData['health_status_id'] = $health_status_id;
+        $validatedData['user_id'] = $user_id;
+        
+        //dd($validatedData);
+        $patient = Patient::create($validatedData);
+        //dd($patient);
+        $patient->services()->attach($request->input('service'), 
+        ['reason_hospitalization'=>$validatedData['reason_hospitalization'], 
+        'date_entry'=>now()]);
+        $patient->medical_histories()->attach($request->input('medical_history'));
+        $patient->medications()->attach($request->input('medication'));
+        $patient->allergies()->attach($request->input('allergy'));
+
         return redirect()->route('monitoring')->with('success', 'Le nouveau patient a bien été ajouté');
     }
 

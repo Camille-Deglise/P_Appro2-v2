@@ -34,7 +34,7 @@ return new class extends Migration
             $table->primary(['patient_id','service_id']);
             $table->text('reason_hospitalization');
             $table->date('date_entry');
-            $table->date('date_discharge');
+            $table->date('date_discharge')->nullable();
         });
     }
 

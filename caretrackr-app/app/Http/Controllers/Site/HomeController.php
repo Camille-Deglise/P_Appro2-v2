@@ -48,14 +48,5 @@ class HomeController extends Controller
    
        return view('site.home', compact('patients', 'mesures'));
    }
-    
-    public function mesures()
-    {
-        $mesures = MesuredValue::orderBy('id', 'desc')
-                ->take(5)
-                ->join('patients', 'mesured_values.patient_id', '=', 'patients.id')
-                ->select('mesured_values.*', 'patients.name as patient_name')
-                ->get();
-        return view('site.home', ['mesures' => $mesures]);
-    }
+
 }
