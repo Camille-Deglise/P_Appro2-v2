@@ -23,8 +23,9 @@ class PatientFormRequest extends FormRequest
     {
         return [
 
-            'name' => ['required', 'string', 'regex:/^[-a-zA-ZÀ-ÿ]+$/'],
-            'firstname'=>['required','string', 'regex:/^[-a-zA-ZÀ-ÿ]+$/'],
+            'name' => ['required', 'string', 'regex:/^[a-zA-ZÀ-ÿ\-\' ]+$/'],
+            'firstname'=>['required','string', 'regex:/^[a-zA-ZÀ-ÿ\-\' ]+$/'],
+            'birth_date' =>['required', 'date'],
             'gender' => ['required', 'integer'],
             'health_status_id' =>['required', 'integer'],
             'reason_hospitalization' => ['required', 'string',],
@@ -32,12 +33,12 @@ class PatientFormRequest extends FormRequest
             'allergy' =>['array', 'exists:allergies,id'],
             'medical_history'=>['array', 'exists:medical_histories,id'],
             'avs_number' =>['required', 'regex:/^(756){1}\.[0-9]{4}\.[0-9]{4}\.[0-9]{2}/'],
-            'insurance' =>['required', 'string','regex:/^[-a-zA-ZÀ-ÿ]+$/'],
-            'road_number'=>['required', 'integer','max:3',],
-            'road' =>['required', 'string', 'regex:/^[-a-zA-ZÀ-ÿ]+$/'],
-            'npa'=>['required', 'integer', 'max:5'],
-            'city' =>['required', 'string','regex:/^[-a-zA-ZÀ-ÿ]+$/' ],
-            'country' =>['required', 'string','regex:/^[-a-zA-ZÀ-ÿ]+$/']
+            'insurance' =>['required', 'string','regex:/^[a-zA-ZÀ-ÿ\-\' ]+$/'],
+            'road_number'=>['required', 'regex:/^\d{1,3}$/',],
+            'road' =>['required', 'string', 'regex:/^[a-zA-ZÀ-ÿ\-\' ]+$/'],
+            'npa'=>['required', 'regex:/^\d{1,5}$/'],
+            'city' =>['required', 'string','regex:/^[a-zA-ZÀ-ÿ\-\' ]+$/' ],
+            'country' =>['required', 'string','regex:/^[a-zA-ZÀ-ÿ\-\' ]+$/']
             
         ];
     }

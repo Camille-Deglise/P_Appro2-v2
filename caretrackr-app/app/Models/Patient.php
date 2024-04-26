@@ -39,7 +39,7 @@ class Patient extends Model
 
     public function services()
     {
-        return $this->belongsToMany(Service::class);
+        return $this->belongsToMany(Service::class)->withPivot('reason_hospitalization', 'date_entry', 'date_discharge');
     }
 
     public function medications()

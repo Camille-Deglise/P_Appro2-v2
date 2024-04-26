@@ -24,7 +24,16 @@
             {{$message}}
         @enderror
     </div>
-
+    <div class="mb-6 flex items-center">
+        <label class="block text-gray-500 font-bold mr-4" for="birth_date" style="min-width: 100px;">
+            Prénom
+        </label>
+        <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-grey-500"
+               id="birth_date" name="birth_date" type="date" min="1900-01-01" max="<?php echo date('Y-m-d'); ?>" required>
+        @error('birth_date')
+            {{$message}}
+        @enderror
+    </div>
     <div class="mb-6 flex items-center">
         <label class="block text-gray-500 font-bold mr-4" style="min-width: 100px;" >
             Genre

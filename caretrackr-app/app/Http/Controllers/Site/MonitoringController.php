@@ -10,18 +10,19 @@ class MonitoringController extends Controller
 {
     public function showMonitoring($id)
 {  
-    $patient = Patient::find($id);
+    $patient = Patient::with('services')->find($id);
 
     // Vérifie si le patient existe
     if (!$patient) {
         // Redirige l'utilisateur ou affiche une erreur
         abort(404, 'Patient non trouvé');
     }
-    //$patient->with('')
+    $serviceInfo = $patient->services()->wherePivot('patient_id', $id)->first();
 
     // Passer les valeurs à la vue
     return view('site.monitoring', [
-        'patient' => $patient
+        'patient' => $patient,
+        'serviceInfo' =>$serviceInfo
 
     ]);
 }

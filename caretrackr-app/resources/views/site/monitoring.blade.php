@@ -9,12 +9,17 @@
     <p>Résumé administratif patient</p>
     <p>Nom: {{$patient->name}}</p>
     <p>Prénom: {{$patient->firstname}}</p>
-    <p>Date d'entrée : {{}} </p>
-    <p>Motif de prise en charge : {{}} </p>
+    <p>Date de naissance : {{$patient->birth_date}} </p>
     <p>Service : 
         @foreach ($patient->services as $service)
             {{ $service->name }},
         @endforeach
+    </p>
+    Date d'entrée : {{$serviceInfo->pivot->date_entry}}
+    <p>Motif de prise en charge : {{$serviceInfo->pivot->reason_hospitalization}} 
+    {{-- @php
+        dd($serviceInfo->pivot->date_entry,$service->pivot->reason_hospitalization)
+    @endphp --}}
     </p>
     <p>Allergies : 
         @foreach ($patient->allergies as $allergy)

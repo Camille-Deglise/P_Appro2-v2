@@ -69,7 +69,7 @@ class PatientController extends Controller
         $patient->medications()->attach($request->input('medication'));
         $patient->allergies()->attach($request->input('allergy'));
 
-        return redirect()->route('monitoring')->with('success', 'Le nouveau patient a bien été ajouté');
+        return redirect()->route('monitoring', ['id'=>$patient->id])->with('success', 'Le nouveau patient a bien été ajouté');
     }
 
     /**
