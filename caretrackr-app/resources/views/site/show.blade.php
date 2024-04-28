@@ -5,8 +5,6 @@
 
 <div class="wrapper">
     <div class="content">
-
-
         <div class="patient-show">
         <h2>Résumé administratif de {{$patient->name}} {{$patient->firstname}}</h2>
             <p>Nom: {{$patient->name}}</p>

@@ -4,7 +4,7 @@
 @section('content')
 <h1>Désactiver {{$patient->name}} {{$patient->firstname}}</h1>
 <p>Pour désactiver ce patient, veuillez remplir les champs ci-dessous</p>
-<form action="{{route('patient.destroy', ['patient' =>$patient->id])}}" method="POST">
+<form action="{{ route('deactivated', ['patient' => $patient->id]) }}" method="POST">
 @csrf
     <div class="mb-4">
         <label for="discharge_date"  class="block text-gray-700 font-bold">Date de sortie</label>

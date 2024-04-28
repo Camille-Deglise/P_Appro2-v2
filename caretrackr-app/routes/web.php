@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Site\HomeController;
-use App\Http\Controllers\Site\MonitoringController;
+use App\Http\Controllers\Site\ImportController;
 use App\Http\Controllers\Site\PatientController;
 use App\Http\Controllers\Site\SettingsController;
 use App\Models\Patient;
@@ -55,11 +55,15 @@ Route::delete('/logout', [LoginController::class,'logout'])
 Route::get('/home',  [HomeController::class, 'index'])->name('home');
 
 
-/*Routes pour les onglets une fois l'utilisateur connecté*/
-//Route::get('/monitoring/{patient}',[HomeController::class, 'getNavbarPatients'])->name('monitoring.show');
-//Route::get('/monitoring/{id}', [MonitoringController::class, 'showMonitoring'])->name('monitoring');
-
+/*--------------------------Routes pour les modifications de l'utilisateur------------------ */
 Route::get('/settings', [SettingsController::class,'showSettings'])->name('settings');
+
+
+/*-----------Routes gérant le CRUD pour le Patient------------------------------------- */
 Route::resource('patient', PatientController::class)->except('destroy');
 Route::get('/patients/{patient}/disable', [PatientController::class, 'disable'])->name('disable');
-Route::post('/patients/{patient}/destroy', [PatientController::class, 'destroy'])->name('patient.destroy');
+Route::post('/patients/{patient}/deactivated', [PatientController::class, 'deactivated'])->name('deactivated');
+
+/*-----------------Route gérant l'import de données -------------------------------------*/
+Route::get('/import', [ImportController::class, 'showForm'])->name('import.showForm');
+Route::post('/import/process', [ImportController::class, 'process'])->name('import.process');

@@ -1,16 +1,17 @@
 <?php
 
 namespace App\Http\Controllers\Site;
-use Illuminate\Support\Facades\Auth;
+
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DeactivtedRequest;
 use App\Http\Requests\PatientFormRequest;
 use App\Models\Allergy;
 use App\Models\HealthStatus;
 use App\Models\MedicalHistory;
 use App\Models\Medication;
 use App\Models\Patient;
-use Illuminate\Http\Request;
-use App\Models\Service;
+
+
 class PatientController extends Controller
 {
     /**
@@ -162,10 +163,10 @@ class PatientController extends Controller
     {   
         $health_statuses = HealthStatus::whereIn('label', ['retour à domicile', 'transfert', 'décès'])->get();
        
-        return view('site.disable', compact('patient', 'health_statuses'));
+        return view('site.deactivated', compact('patient', 'health_statuses'));
     }
 
-    public function destroy(Patient $patient, PatientFormRequest $request)
+    public function deactivated(Patient $patient, DeactivtedRequest $request)
     {
         $validatedData = $request->validated();
 
@@ -175,9 +176,10 @@ class PatientController extends Controller
             'health_status_id' => $validatedData['health_status_id'],
         ]);
     
-        // Supprimer les liens avec les services
+        // Supprimer les liens avec les services et de l'utilisateur
+        $patient->update(['user_id'=> null]);
         $patient->services()->detach();
     
-        return redirect()->route('site.home')->with('success', 'Le patient a été désactivé de vos suivis');
+        return redirect()->route('home')->with('success', 'Le patient a été désactivé de vos suivis');
     }
 }
