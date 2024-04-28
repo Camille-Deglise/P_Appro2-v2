@@ -12,6 +12,7 @@
 
 <body class="flex flex-col justify-between h-screen">
   <div class="wrapper">
+
       <nav class="bg-gray-800 p-6">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex items-center justify-between h-16">
@@ -52,10 +53,12 @@
         </div>
         @endguest
       </nav>
+
   </div>
       <div class="text-center py-4">
         <h1 class="text-4xl font-semibold">@yield('page-title')</h1>
       </div>
+
     <div class="content container mx-auto px-4 py-8">
         @if (session('success'))
             <div class="alert alert-success text-gray-800 text-lg font-semibold">
@@ -76,10 +79,11 @@
                 </ul>
             </div>  
         @endif
+
+        @yield('content')
+        
     </div>
 
-    
-    @yield('content')
 </body>
 
 <footer class="bg-gray-800 p-6">

@@ -15,7 +15,7 @@
                         <strong>Prénom:</strong> {{ $patient->firstname }} <br>
                         <strong>Statut de santé:</strong> {{ $patient->health_status_label}}
                         <p>
-                            <a href="{{ route('monitoring', ['id' => $patient->id]) }}">Voir le suivi complet</a>
+                            <a href="{{ route('patient.show', ['patient' => $patient->id]) }}">Voir le suivi complet</a>
                         </p> 
                         
                     </div>

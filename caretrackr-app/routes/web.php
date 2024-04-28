@@ -57,7 +57,9 @@ Route::get('/home',  [HomeController::class, 'index'])->name('home');
 
 /*Routes pour les onglets une fois l'utilisateur connecté*/
 //Route::get('/monitoring/{patient}',[HomeController::class, 'getNavbarPatients'])->name('monitoring.show');
-Route::get('/monitoring/{id}', [MonitoringController::class, 'showMonitoring'])->name('monitoring');
+//Route::get('/monitoring/{id}', [MonitoringController::class, 'showMonitoring'])->name('monitoring');
 
 Route::get('/settings', [SettingsController::class,'showSettings'])->name('settings');
-Route::resource('patient', PatientController::class);
+Route::resource('patient', PatientController::class)->except('destroy');
+Route::get('/patients/{patient}/disable', [PatientController::class, 'disable'])->name('disable');
+Route::post('/patients/{patient}/destroy', [PatientController::class, 'destroy'])->name('patient.destroy');

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('birth_date');
             $table->string('insurance');
             $table->string('avs_number');
-            $table->integer('road_number');
+            $table->string('road_number');
             $table->string('road');
             $table->integer('npa');
             $table->string('city');
