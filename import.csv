@@ -1,0 +1,3 @@
+name,firstname,birth_date,gender,insurance,road,road_number,npa,avs_number,city,country,health_status_id,user_id,reason_hospitalization,date_entry,temperature,systole,diastole,oxygen_saturation,pulse,bloog_sugar,mesured_at
+Louise,Cerise,1958-07-07,3,Assura,Chemin du Faisan,68,1955,756.3636.3232.12,Lausanne,Switzerland,4,2,Pneumonie,2024-04-29,38.4,110,65,89,110,5.6,2024-04-29 06:50:00
+Dupont,Horace,1978-01-06,1,Groupe Mutuel,Rue de la Soif,63bis,2345,756.1414.1515.16,Zug,Switzerland,3,2,Fracture de la jambe,2024-03-05,36.5,135,60,98,89,4.2,2024-03-05 07:10:00
