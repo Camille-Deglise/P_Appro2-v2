@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('firstname');
             $table->tinyInteger('gender');
-            $table->string('birth_date');
+            $table->date('birth_date');
             $table->string('insurance');
             $table->string('avs_number');
             $table->string('road_number');

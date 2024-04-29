@@ -1,6 +1,6 @@
 @extends('base')
 @section('title', 'Importer des données')
-@section('page-title', 'Importer des données')
+@section('page-title', 'Importer des données patient')
 @section('content')
 <form action="{{ route('import.process') }}" method="POST" enctype="multipart/form-data">
     @csrf

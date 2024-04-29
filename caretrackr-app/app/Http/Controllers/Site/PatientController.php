@@ -106,7 +106,8 @@ class PatientController extends Controller
             abort(404, 'Patient non trouvé');
         }
         $serviceInfo = $patient->services()->wherePivot('patient_id', $id)->first();
-    
+        
+        
         // Passer les valeurs à la vue
         return view('site.show', [
             'patient' => $patient,

@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\ImportController;
+use App\Http\Controllers\Site\MesuredValuesController;
 use App\Http\Controllers\Site\PatientController;
 use App\Http\Controllers\Site\SettingsController;
 use App\Models\Patient;
@@ -63,7 +64,11 @@ Route::get('/settings', [SettingsController::class,'showSettings'])->name('setti
 Route::resource('patient', PatientController::class)->except('destroy');
 Route::get('/patients/{patient}/disable', [PatientController::class, 'disable'])->name('disable');
 Route::post('/patients/{patient}/deactivated', [PatientController::class, 'deactivated'])->name('deactivated');
+Route::get('/patient/{id}', [PatientController::class, 'show'])->name('site.show');
 
-/*-----------------Route gérant l'import de données -------------------------------------*/
-Route::get('/import', [ImportController::class, 'showForm'])->name('import.showForm');
+/*-----------------Routes gérant l'import de données -------------------------------------*/
+Route::get('/import', [ImportController::class, 'showForm'])->name('import');
 Route::post('/import/process', [ImportController::class, 'process'])->name('import.process');
+
+/*--------------------Routes gérant l'ajout de mesures à un patient------------------------*/
+Route::post('/patient/{id}/addMesures', [MesuredValuesController::class, 'addMesures'])->name('addMesures');

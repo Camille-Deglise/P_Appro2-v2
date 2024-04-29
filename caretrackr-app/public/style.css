@@ -64,6 +64,15 @@ textarea {
 .mesure-card {
     margin-bottom: 20px;
 }
+.patient-show{
+    width: 50%;
+}
+.add_mesures{
+    width: 50%;
+}
+.add_mesures .flex > * {
+    margin-right: 10px; /* Ajoute une marge à droite pour espacer les éléments */
+}
 
 /* Styles pour le conteneur des boutons */
 .button-container {

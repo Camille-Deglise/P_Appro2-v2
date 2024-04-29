@@ -16,6 +16,7 @@ class MesuredValue extends Model
         'pulse',
         'bloog_sugar',
         'mesured_at',
+        'patient_id'
     ];
 
     public function patients()
