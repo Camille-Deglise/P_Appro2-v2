@@ -51,7 +51,11 @@ textarea {
 
 /* Style pour la liste des mesures à droite */
 .measurement-list {
-    width: calc(50% - 30px); /* 50% de la largeur de la page moins les marges */
+    width: 25%; /* 50% de la largeur de la page moins les marges */
+    overflow-y: auto; /* Ajoute une barre de défilement verticale */
+    max-height: 300px; /* Définissez une hauteur maximale pour activer le défilement */
+    white-space: nowrap; /* Empêche le texte de se renvoyer à la ligne */
+
 }
 
 /* Style pour l'encadré supplémentaire à droite */
@@ -62,18 +66,20 @@ textarea {
 /* Ajout d'espace entre les éléments de la liste */
 .patient-card,
 .mesure-card {
-    margin-bottom: 20px;
+    width: 50%; /* Assurez-vous que chaque carte occupe toute la largeur */
+    max-width: 100%; /* Définissez une largeur maximale pour chaque carte */
+    overflow: auto; /* Ajoute une barre de défilement horizontale si nécessaire */
 }
-.patient-show{
-    width: 50%;
-}
-.add_mesures{
-    width: 50%;
-}
+
 .add_mesures .flex > * {
     margin-right: 10px; /* Ajoute une marge à droite pour espacer les éléments */
 }
-
+.patient-show{
+    width: 25%;
+}
+.add_mesures{
+    width: 35%;
+}
 /* Styles pour le conteneur des boutons */
 .button-container {
     display: flex; /* Affichage en mode flexbox */

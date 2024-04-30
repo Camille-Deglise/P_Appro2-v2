@@ -14,7 +14,7 @@ class MesuredValue extends Model
         'diastole',
         'oxygen_saturation',
         'pulse',
-        'bloog_sugar',
+        'blood_sugar',
         'mesured_at',
         'patient_id'
     ];
@@ -23,4 +23,11 @@ class MesuredValue extends Model
     {
         return $this->belongsTo(Patient::class, 'patient_id');
     }
+
+
+    public function tension()
+    {
+        return $this->systole . '/' . $this->diastole;
+    }
+
 }

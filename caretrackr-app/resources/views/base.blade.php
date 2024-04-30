@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="{{asset('style.css')}}" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
     <title>@yield('title')</title> 
 
 </head>
@@ -83,7 +84,7 @@
         @yield('content')
         
     </div>
-
+    
 </body>
 
 <footer class="bg-gray-800 p-6">

@@ -1,13 +1,14 @@
 @extends('base')
 @section('title', 'Suivis de patients')
-@section('page-title', 'Suivis de patients')
+@section('page-title', 'Suivi de ' . $patient->name . ' ' . $patient->firstname)
+
 @section('content')
 
 <div class="wrapper">
     <div class="content">
         <div class="row">
             <div class="patient-show">
-                    <h2>Résumé administratif de {{$patient->name}} {{$patient->firstname}}</h2>
+                    <h2>Résumé administratif</h2>
                     <p>Nom: {{$patient->name}}</p>
                     <p>Prénom: {{$patient->firstname}}</p>
                     <p>Date de naissance : {{$patient->birth_date}} </p>
@@ -42,10 +43,42 @@
                     </form>
                 </div>
             </div>
-
+            <div class="measurement-list encard">
+                            <h2>Mesures prises</h2>
+                            @foreach($mesures as $mesure)
+                                <div class="mesure-card">
+                                    <strong>Type:</strong> <br>
+                                    @if($mesure->temperature)
+                                        Température: {{ $mesure->temperature }}°C <br>
+                                    @endif
+                                    @if($mesure->systole && $mesure->diastole)
+                                        Tension: {{ $mesure->systole }}/{{ $mesure->diastole }} mmHg <br>
+                                    @endif
+                                    @if($mesure->oxygen_saturation)
+                                        Saturation: {{ $mesure->oxygen_saturation }}% <br>
+                                    @endif
+                                    @if($mesure->pulse)
+                                        Pouls: {{ $mesure->pulse }} bpm <br>
+                                    @endif
+                                    @if($mesure->blood_sugar)
+                                        Glyécmie: {{ $mesure->blood_sugar }} mg/dL <br>
+                                    @endif
+                                    <strong>Date de mesure:</strong> {{ $mesure->mesured_at }}
+                                </div>
+                            @endforeach
+                        </div>
             <div class="add_mesures">
                 @include('site.addMesure')
             </div>
+
+            <div class="charts">
+
+                {!! $chart->container() !!}
+                
+                {!! $chart->script() !!}
+ 
+            </div>
+
         </div>
     </div>
 </div>

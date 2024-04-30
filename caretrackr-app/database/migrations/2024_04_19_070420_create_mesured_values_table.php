@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('diastole')->nullable();
             $table->integer('oxygen_saturation')->nullable();
             $table->integer('pulse')->nullable();
-            $table->decimal('bloog_sugar', total:3, places:2)->nullable();
+            $table->decimal('blood_sugar', total:3, places:1)->nullable();
             $table->dateTime('mesured_at');
             $table->foreignIdFor(Patient::class)->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();

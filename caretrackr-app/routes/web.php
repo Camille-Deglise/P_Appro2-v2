@@ -72,3 +72,4 @@ Route::post('/import/process', [ImportController::class, 'process'])->name('impo
 
 /*--------------------Routes gérant l'ajout de mesures à un patient------------------------*/
 Route::post('/patient/{id}/addMesures', [MesuredValuesController::class, 'addMesures'])->name('addMesures');
+

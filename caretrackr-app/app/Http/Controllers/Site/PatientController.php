@@ -10,6 +10,8 @@ use App\Models\HealthStatus;
 use App\Models\MedicalHistory;
 use App\Models\Medication;
 use App\Models\Patient;
+use aPP\Models\MesuredValue;
+use App\Charts\MesuresChart;
 
 
 class PatientController extends Controller
@@ -107,14 +109,20 @@ class PatientController extends Controller
         }
         $serviceInfo = $patient->services()->wherePivot('patient_id', $id)->first();
         
+        $mesures = $patient->mesured_values()
+        ->orderBy('mesured_at', 'desc')
+        ->get();
         
-        // Passer les valeurs à la vue
-        return view('site.show', [
-            'patient' => $patient,
-            'serviceInfo' =>$serviceInfo
-    
-        ]);
-    }
+        
+        $tempChart = app(MesuredValuesController::class)->temperatureChart($mesures);
+            // Passer les valeurs à la vue
+            return view('site.show', [
+                'patient' => $patient,
+                'serviceInfo' =>$serviceInfo,
+                'mesures' => $mesures,
+                'chart' => $tempChart
+            ]);
+        }
 
     /**
      * Show the form for editing the specified resource.

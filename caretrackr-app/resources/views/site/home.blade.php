@@ -43,8 +43,8 @@
                         @if($mesure->pulse)
                             Pouls: {{ $mesure->pulse }} bpm <br>
                         @endif
-                        @if($mesure->bloog_sugar)
-                            Glyécmie: {{ $mesure->bloog_sugar }} mg/dL <br>
+                        @if($mesure->blood_sugar)
+                            Glyécmie: {{ $mesure->blood_sugar }} mg/dL <br>
                         @endif
                         <strong>Date de mesure:</strong> {{ $mesure->mesured_at }}
                     </div>
