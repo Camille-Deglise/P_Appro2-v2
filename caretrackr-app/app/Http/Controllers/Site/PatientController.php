@@ -115,12 +115,21 @@ class PatientController extends Controller
         
         
         $tempChart = app(MesuredValuesController::class)->temperatureChart($mesures);
+        $satChart = app(MesuredValuesController::class)->saturationChart($mesures);
+        $pulseChart = app(MesuredValuesController::class)->pulseChart($mesures);
+        $bsChart = app(MesuredValuesController::class)->blood_sugarChart($mesures);
+        $tensChart = app(MesuredValuesController::class)->tensionChart($mesures);
+
             // Passer les valeurs à la vue
             return view('site.show', [
                 'patient' => $patient,
                 'serviceInfo' =>$serviceInfo,
                 'mesures' => $mesures,
-                'chart' => $tempChart
+                'tempchart' => $tempChart,
+                'satchart' => $satChart,
+                'pulsechart' => $pulseChart,
+                'bschart' =>$bsChart,
+                'tenschart' =>$tensChart
             ]);
         }
 

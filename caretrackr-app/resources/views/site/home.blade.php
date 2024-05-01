@@ -50,10 +50,6 @@
                     </div>
                 @endforeach
             </div>
-              <!-- Encadré supplémentaire à droite -->
-              <div class="graph-encard encard">
-                <h1>Derniers graphiques</h1>
-            </div>
         </div>
     </div>
 @endsection

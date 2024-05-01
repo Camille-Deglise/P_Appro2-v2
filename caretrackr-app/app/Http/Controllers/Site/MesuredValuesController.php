@@ -29,17 +29,7 @@ class MesuredValuesController extends Controller
 
     public function temperatureChart($mesures)
     {
-        //Vérification que les mesures de température contiennent minimum 3 valeurs
-        if($mesures->pluck('temperature')->count() < 3)
-        {
-            return "Minimum 3 valeurs nécessaires pour générer un graphique";
-        }
-        //Vérification que si les mesures de températures sont vides
-        if($mesures->pluck('temperature')->isEmpty())
-        {
-            return null;
-        }
-
+        
         //Création nouveau graphique
         $tempChart = new MesuresChart;
 
@@ -55,5 +45,72 @@ class MesuredValuesController extends Controller
         return $tempChart;
     }
     
+    public function saturationChart($mesures)
+    {
+        //Création nouveau graphique
+        $satChart = new MesuresChart;
 
+        //Axe X contenant les dates 
+        $dates = $mesures->pluck('mesured_at');
+
+        //Axe Y contenant les températures
+        $saturation = $mesures->pluck('oxygen_saturation');
+
+        //Association des axes X Y pour le graphique
+        $satChart->labels($dates);
+        $satChart->dataset('Saturation O2', 'line', $saturation)->backgroundColor('rgba(255, 99, 132, 0.2)');
+        return $satChart;
+    }
+
+    public function pulseChart($mesures)
+    {
+        //Création nouveau graphique
+        $pulseChart = new MesuresChart;
+
+        //Axe X contenant les dates 
+        $dates = $mesures->pluck('mesured_at');
+
+        //Axe Y contenant les pulsations
+        $pulses = $mesures->pluck('pulse');
+
+        //Association des axes X Y pour le graphique
+        $pulseChart->labels($dates);
+        $pulseChart->dataset('Pulsations', 'line', $pulses)->backgroundColor('rgba(255, 99, 132, 0.2)');
+        return $pulseChart;
+    }
+
+    public function blood_sugarChart($mesures)
+    {
+        //Création nouveau graphique
+        $bsChart = new MesuresChart;
+
+        //Axe X contenant les dates 
+        $dates = $mesures->pluck('mesured_at');
+
+        //Axe Y contenant les glyécmies
+        $bs = $mesures->pluck('blood_sugar');
+
+        //Association des axes X Y pour le graphique
+        $bsChart->labels($dates);
+        $bsChart->dataset('Glycémies', 'line', $bs)->backgroundColor('rgba(255, 99, 132, 0.2)');
+        return $bsChart;
+    }
+
+    public function tensionChart($mesures)
+    {
+        //Création nouveau graphique
+        $tensionChart = new MesuresChart;
+
+        //Axe X contenant les dates 
+        $dates = $mesures->pluck('mesured_at');
+
+        //Axe Y contenant les températures
+        $systoles = $mesures->pluck('systole');
+        $diastoles = $mesures->pluck('diastoles');
+
+        //Association des axes X Y pour le graphique
+        $tensionChart->labels($dates);
+        $tensionChart->dataset('Tension', 'line', $systoles, $diastoles)->backgroundColor('rgba(255, 99, 132, 0.2)');
+        return $tensionChart;
+    }
 }

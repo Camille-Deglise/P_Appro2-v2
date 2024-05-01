@@ -6,7 +6,7 @@
 
 <div class="wrapper">
     <div class="content">
-        <div class="row">
+        <div class="row1">
             <div class="patient-show">
                     <h2>Résumé administratif</h2>
                     <p>Nom: {{$patient->name}}</p>
@@ -70,18 +70,11 @@
             <div class="add_mesures">
                 @include('site.addMesure')
             </div>
-
-            <div class="charts">
-
-                {!! $chart->container() !!}
-                
-                {!! $chart->script() !!}
- 
-            </div>
-
         </div>
+        <div class="row2">
+                @include('site.charts')
+        </div>
+   
     </div>
 </div>
-
-
 @endsection
