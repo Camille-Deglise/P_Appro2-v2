@@ -12,6 +12,11 @@ html, body {
     flex: 1;
 
 }
+#mes-suivis:hover .absolute {
+    display: block;
+
+}
+
 /* Styles pour les balises de titre */
 h1, h2, h3, h4, h5, h6 {
     font-weight: bold; /* Police en gras */

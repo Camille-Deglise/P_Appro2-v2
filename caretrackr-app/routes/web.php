@@ -9,7 +9,6 @@ use App\Http\Controllers\Site\ImportController;
 use App\Http\Controllers\Site\MesuredValuesController;
 use App\Http\Controllers\Site\PatientController;
 use App\Http\Controllers\Site\SettingController;
-use App\Models\Patient;
 use Illuminate\Http\Request;
 
 /*
@@ -52,6 +51,11 @@ Route::delete('/logout', [LoginController::class,'logout'])
 ->name('logout');
 
 /*--------------------------------------------*/
+
+
+
+
+
 /*Route  de redirection sur la page home du site quand l'utilisateur est connecté */
 Route::get('/home',  [HomeController::class, 'index'])->name('home');
 
