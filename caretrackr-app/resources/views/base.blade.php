@@ -13,7 +13,6 @@
 
 <body class="flex flex-col justify-between h-screen">
   <div class="wrapper">
-
       <nav class="bg-gray-800 p-6">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex items-center justify-between h-16">
@@ -38,7 +37,7 @@
     </div>
         <div class="flex items-center">
              <div class="flex-shrink-0 mr-6 ml-auto" >
-                <span class="text-gray-300 text-lg font-semibold">
+                <span class="text-gray-300 text-base font-semibold">
                         {{Auth::user()->fullName()}}
                         <form class="nav-item" action="{{route('logout')}}" method="POST">
                             @method('delete') 

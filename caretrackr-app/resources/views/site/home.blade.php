@@ -5,7 +5,7 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
+        <div class="row1">
             <!-- Liste des patients -->
             <div class="patient-list encard">
                 <h1>Liste des patients suivis</h1>

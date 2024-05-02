@@ -1,4 +1,4 @@
-<div id="mes-suivis" class="relative">
+<div id="mes-suivis" class="relative align-middle">
     <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Mes suivis</a>
     <div class ="absolute hidden bg-whit shadow-md">
         <ul>
