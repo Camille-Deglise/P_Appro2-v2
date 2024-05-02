@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\PatientController;
-
+use App\Util\NoChartData;
 use App\Http\Requests\MesuredValuesRequest;
 use App\Models\MesuredValue;
 use App\Models\Patient;
 use App\Charts\MesuresChart;
-use Illuminate\Http\Request;
-use Illuminate\Foundation\Http\FormRequest;
+
 
 class MesuredValuesController extends Controller
 {
@@ -29,7 +27,11 @@ class MesuredValuesController extends Controller
 
     public function temperatureChart($mesures)
     {
-        
+        // Vérifier s'il y a au moins trois valeurs de température
+        if ($mesures->pluck('temperature')->count() < 3) {
+        return new NoChartData("Minimum 3 valeurs sont nécessaires pour générer le graphique des températures");
+        }
+
         //Création nouveau graphique
         $tempChart = new MesuresChart;
 
@@ -47,6 +49,10 @@ class MesuredValuesController extends Controller
     
     public function saturationChart($mesures)
     {
+        // Vérifier s'il y a au moins trois valeurs de température
+        if ($mesures->pluck('oxygen_saturation')->count() < 3) {
+            return new NoChartData("Minimum 3 valeurs sont nécessaires pour générer le graphique de la saturation");
+            }
         //Création nouveau graphique
         $satChart = new MesuresChart;
 
@@ -64,6 +70,10 @@ class MesuredValuesController extends Controller
 
     public function pulseChart($mesures)
     {
+        // Vérifier s'il y a au moins trois valeurs de température
+        if ($mesures->pluck('pulse')->count() < 3) {
+            return new NoChartData("Minimum 3 valeurs sont nécessaires pour générer le graphique des pulsations");
+            }
         //Création nouveau graphique
         $pulseChart = new MesuresChart;
 
@@ -81,6 +91,10 @@ class MesuredValuesController extends Controller
 
     public function blood_sugarChart($mesures)
     {
+        // Vérifier s'il y a au moins trois valeurs de température
+        if ($mesures->pluck('blood_sugar')->count() < 3) {
+            return new NoChartData("Minimum 3 valeurs sont nécessaires pour générer le graphique des glycémies");
+            }
         //Création nouveau graphique
         $bsChart = new MesuresChart;
 
@@ -98,6 +112,10 @@ class MesuredValuesController extends Controller
 
     public function tensionChart($mesures)
     {
+        // Vérifier s'il y a au moins trois valeurs de température
+        if (($mesures->pluck('systole')->count() < 3) && ($mesures->pluck('diastole')->count()<3)){
+            return new NoChartData("Minimum 3 valeurs sont nécessaires pour générer le graphique de la tension");
+            }
         //Création nouveau graphique
         $tensionChart = new MesuresChart;
 
@@ -106,11 +124,13 @@ class MesuredValuesController extends Controller
 
         //Axe Y contenant les températures
         $systoles = $mesures->pluck('systole');
-        $diastoles = $mesures->pluck('diastoles');
+        $diastoles = $mesures->pluck('diastole');
 
         //Association des axes X Y pour le graphique
         $tensionChart->labels($dates);
-        $tensionChart->dataset('Tension', 'line', $systoles, $diastoles)->backgroundColor('rgba(255, 99, 132, 0.2)');
+        $tensionChart->dataset('Systole', 'line', $systoles)->backgroundColor('rgba(255, 99, 132, 0.2)');
+        $tensionChart->dataset('Diastole', 'line', $diastoles)->backgroundColor('rgba(54, 162, 235, 0.2)');
+
         return $tensionChart;
     }
 }

@@ -1,34 +1,54 @@
 <div class="charts">
 
-    <div class="temp-chart">
+    @if($tempchart instanceof \App\Util\NoChartData)
+        <p>{{ $tempchart->message }}</p>
+    @else
+        <div class="temp-chart">
+            {!! $tempchart->container() !!}
+            {!! $tempchart->script() !!} 
+        </div>
+    @endif
 
-        {!! $tempchart->container() !!}
-        
-        {!! $tempchart->script() !!} 
-    </div>
-    <div class='sat-chart'>
+    @if ($satchart instanceof \App\Util\NoChartData)
+        <p>{{$satchart->message}}</p>
+    @else
+         <div class='sat-chart'>
 
-        {!! $satchart->container() !!}
+            {!! $satchart->container() !!}
+            
+            {!! $satchart->script() !!} 
+        </div>
+    @endif
         
-        {!! $satchart->script() !!} 
-    </div>
-    <div class="pulse-chart">
+   @if ($pulsechart instanceof \App\Util\NoChartData)
+        <p>{{$pulsechart->message}}</p>
+   @else
+        <div class="pulse-chart">
 
-        {!! $pulsechart->container() !!}
-        
-        {!! $pulsechart->script() !!} 
+            {!! $pulsechart->container() !!}
+            
+            {!! $pulsechart->script() !!} 
+        </div>
+   @endif
+   
+   @if ($bschart instanceof \App\Util\NoChartData)
+        <p>{{$bschart->message}}</p>
+   @else
+       <div class="bs-chart">
+            {!! $bschart->container() !!}
+            
+            {!! $bschart->script() !!} 
     </div>
-    <div class="bs-chart">
-
-        {!! $bschart->container() !!}
-        
-        {!! $bschart->script() !!} 
-    </div>
-    <div class="tens-chart">
-
-        {!! $tenschart->container() !!}
-        
-        {!! $tenschart->script() !!}  
-    </div>
+   @endif
+    
+   @if ($tenschart instanceof \App\Util\NoChartData)
+        <p>{{$tenschart->message}}</p>
+   @else
+        <div class="tens-chart">
+            {!! $tenschart->container() !!}
+            
+            {!! $tenschart->script() !!}  
+        </div>
+   @endif
     
 </div>

@@ -8,7 +8,7 @@ use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\ImportController;
 use App\Http\Controllers\Site\MesuredValuesController;
 use App\Http\Controllers\Site\PatientController;
-use App\Http\Controllers\Site\SettingsController;
+use App\Http\Controllers\Site\SettingController;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 
@@ -57,7 +57,8 @@ Route::get('/home',  [HomeController::class, 'index'])->name('home');
 
 
 /*--------------------------Routes pour les modifications de l'utilisateur------------------ */
-Route::get('/settings', [SettingsController::class,'showSettings'])->name('settings');
+Route::get('/setting', [SettingController::class, 'edit'])->name('setting.edit');
+Route::put('/setting/{user}', [SettingController::class, 'update'])->name('setting.update');
 
 
 /*-----------Routes gérant le CRUD pour le Patient------------------------------------- */
@@ -72,4 +73,6 @@ Route::post('/import/process', [ImportController::class, 'process'])->name('impo
 
 /*--------------------Routes gérant l'ajout de mesures à un patient------------------------*/
 Route::post('/patient/{id}/addMesures', [MesuredValuesController::class, 'addMesures'])->name('addMesures');
+
+
 

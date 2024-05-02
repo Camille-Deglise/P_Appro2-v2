@@ -29,7 +29,7 @@
                     <!-- Onlgets de la nav si l'utilisateur est connecté -->
                     <a href="{{ route('patient.create') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Ajouter patient</a>
                     <a href="{{route('import')}}"class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Importer des données</a>
-                    <a href="{{ route('settings') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Mon profil</a>
+                    <a href="{{ route('setting.edit') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Mon profil</a>
                 </div>
             </div>
         </div>
