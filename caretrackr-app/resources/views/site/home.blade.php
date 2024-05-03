@@ -4,12 +4,12 @@
 
 
 @section('content')
-        <div class="inline-flex max-w-screen ">
+        <div class="inline-flex  ">
             <!-- Liste des patients -->
-            <div class=" border border-solid border-gray-400 rounded-md mx-8 ">
+            <div class=" overflow-auto max-h-96 max-w-max border border-solid border-gray-400 rounded-md mx-8 ">
                 <h1 class="mx-4">Liste des patients suivis</h1>
                 @foreach($patients as $patient)
-                    <div class="overflow-auto mt-2 mx-6">
+                    <div class=" mt-2 mx-6">
                         <strong>Nom:</strong> {{ $patient->name }} <br>
                         <strong>Prénom:</strong> {{ $patient->firstname }} <br>
                         <strong>Statut de santé:</strong> {{ $patient->health_status_label}}
@@ -22,7 +22,7 @@
             </div>
 
             <!-- Liste des mesures médicales -->
-            <div class="border border-solid border-gray-400 rounded-md mx-8 ">
+            <div class="overflow-auto max-h-96 border border-solid border-gray-400 rounded-md mx-8 ">
                 <h1 class="mx-4">Liste des 5 dernières mesures médicales</h1>
                 @foreach($mesures as $mesure)
                     <div class="mt-2 mx-6">
