@@ -1,27 +1,16 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 150px;
-}
-.content {
-    flex: 1;
 
-}
 #mes-suivis:hover .absolute {
-    display: block;
+    display:block;
 
 }
+
+
 
 /* Styles pour les balises de titre */
 h1, h2, h3, h4, h5, h6 {
     font-weight: bold; /* Police en gras */
     margin-top: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 input[type="text"],
@@ -32,58 +21,7 @@ textarea {
     color: #6b7280;
 }
 
-/* Style pour le conteneur de la row */
-.row1 {
-    display: flex;
-    justify-content: space-between;
-}
 
-
-/* Style de base pour les encadrés */
-.encard {
-    flex: 1; /* Chaque encadré prend une part égale de l'espace disponible */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Style pour la liste des patients à gauche */
-.patient-list {
-    width: calc(50% - 30px); /* 50% de la largeur de la page moins les marges */
-    margin-right: 30px;
-    overflow-y: auto; /* Ajoute une barre de défilement verticale */
-    max-height: 400px; /* Définissez une hauteur maximale pour activer le défilement */
-}
-
-/* Style pour la liste des mesures à droite */
-.measurement-list {
-    width: 25%; /* 50% de la largeur de la page moins les marges */
-    overflow-y: auto; /* Ajoute une barre de défilement verticale */
-    max-height: 400px; /* Définissez une hauteur maximale pour activer le défilement */
-    white-space: nowrap; /* Empêche le texte de se renvoyer à la ligne */
-
-}
-
-
-/* Ajout d'espace entre les éléments de la liste */
-.patient-card,
-.mesure-card {
-    width: 50%; /* Assurez-vous que chaque carte occupe toute la largeur */
-    max-width: 100%; /* Définissez une largeur maximale pour chaque carte */
-    overflow: auto; /* Ajoute une barre de défilement horizontale si nécessaire */
-}
-
-.add_mesures .flex > * {
-    margin-right: 10px; /* Ajoute une marge à droite pour espacer les éléments */
-}
-.patient-show{
-    width: 25%;
-}
-.add_mesures{
-    width: 35%;
-}
 /* Styles pour le conteneur des boutons */
 .button-container {
     display: flex; /* Affichage en mode flexbox */

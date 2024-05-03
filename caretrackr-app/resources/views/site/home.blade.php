@@ -4,18 +4,17 @@
 
 
 @section('content')
-    <div class="container">
-        <div class="row1">
+        <div class="inline-flex max-w-screen ">
             <!-- Liste des patients -->
-            <div class="patient-list encard">
-                <h1>Liste des patients suivis</h1>
+            <div class=" border border-solid border-gray-400 rounded-md mx-8 ">
+                <h1 class="mx-4">Liste des patients suivis</h1>
                 @foreach($patients as $patient)
-                    <div class="patient-card">
+                    <div class="overflow-auto mt-2 mx-6">
                         <strong>Nom:</strong> {{ $patient->name }} <br>
                         <strong>Prénom:</strong> {{ $patient->firstname }} <br>
                         <strong>Statut de santé:</strong> {{ $patient->health_status_label}}
                         <p>
-                            <a href="{{ route('patient.show', ['patient' => $patient->id]) }}">Voir le suivi complet</a>
+                            <a href="{{ route('patient.show', ['patient' => $patient->id]) }}" class="underline decoration-gray-500">Voir le suivi complet</a>
                         </p> 
                         
                     </div>
@@ -23,14 +22,15 @@
             </div>
 
             <!-- Liste des mesures médicales -->
-            <div class="measurement-list encard">
-                <h1>Liste des 5 dernières mesures médicales</h1>
+            <div class="border border-solid border-gray-400 rounded-md mx-8 ">
+                <h1 class="mx-4">Liste des 5 dernières mesures médicales</h1>
                 @foreach($mesures as $mesure)
-                    <div class="mesure-card">
+                    <div class="mt-2 mx-6">
                          
                         <strong>Patient:</strong> 
                             {{$mesure->patient_name}} {{ $mesure->patient_firstname }} <br>
-                        <strong>Type:</strong> <br>
+                        <i>Date de mesure:</i> {{ $mesure->mesured_at }} <br>
+                        
                         @if($mesure->temperature)
                             Température: {{ $mesure->temperature }}°C <br>
                         @endif
@@ -46,10 +46,9 @@
                         @if($mesure->blood_sugar)
                             Glyécmie: {{ $mesure->blood_sugar }} mg/dL <br>
                         @endif
-                        <strong>Date de mesure:</strong> {{ $mesure->mesured_at }}
+                        
                     </div>
                 @endforeach
             </div>
         </div>
-    </div>
 @endsection

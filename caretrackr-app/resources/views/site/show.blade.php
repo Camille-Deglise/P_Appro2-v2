@@ -4,77 +4,73 @@
 
 @section('content')
 
-<div class="wrapper">
-    <div class="content">
-        <div class="row1">
-            <div class="patient-show">
-                    <h2>Résumé administratif</h2>
-                    <p>Nom: {{$patient->name}}</p>
-                    <p>Prénom: {{$patient->firstname}}</p>
-                    <p>Date de naissance : {{$patient->birth_date}} </p>
-                    <p>Service : 
-                        @foreach ($patient->services as $service)
-                            {{ $service->name }},
-                        @endforeach
-                    </p>
-                    <p>Date d'entrée : {{$serviceInfo->pivot->date_entry}}</p>
-                    <p>Motif de prise en charge : {{$serviceInfo->pivot->reason_hospitalization}} </p>
-                    <p>Allergies : 
-                        @foreach ($patient->allergies as $allergy)
-                            {{ $allergy->label }},
-                        @endforeach
-                    </p>
-                    <p>Antécédents : 
-                        @foreach ($patient->medical_histories as $medical_history)
-                            {{ $medical_history->label }},
-                        @endforeach
-                    </p>
-                    <p>Médications : 
-                        @foreach ($patient->medications as $medication)
-                            {{ $medication->label }},
-                        @endforeach
-                    </p>
-                <div class="button-container flex">
-                    <form action="{{ route('patient.edit', ['patient' => $patient->id]) }}" method="GET">
-                        <button type="submit" class="shadow bg-gray-300 hover:bg-gray-400 focus:shadow-outline focus:outline-none text-gray-800 font-bold py-2 px-4 rounded mr-4">Modifier profil</button>
-                    </form>
-                    <form action="{{ route('disable', ['patient' => $patient->id]) }}" method="GET">
-                        <button type="submit" class="shadow bg-red-300 hover:bg-red-400 focus:shadow-outline focus:outline-none text-gray-800 font-bold py-2 px-4 rounded">Désactiver patient</button>
-                    </form>
-                </div>
-            </div>
-            <div class="measurement-list encard">
-                            <h2>Mesures prises</h2>
-                            @foreach($mesures as $mesure)
-                                <div class="mesure-card">
-                                    <strong>Type:</strong> <br>
-                                    @if($mesure->temperature)
-                                        Température: {{ $mesure->temperature }}°C <br>
-                                    @endif
-                                    @if($mesure->systole && $mesure->diastole)
-                                        Tension: {{ $mesure->systole }}/{{ $mesure->diastole }} mmHg <br>
-                                    @endif
-                                    @if($mesure->oxygen_saturation)
-                                        Saturation: {{ $mesure->oxygen_saturation }}% <br>
-                                    @endif
-                                    @if($mesure->pulse)
-                                        Pouls: {{ $mesure->pulse }} bpm <br>
-                                    @endif
-                                    @if($mesure->blood_sugar)
-                                        Glyécmie: {{ $mesure->blood_sugar }} mg/dL <br>
-                                    @endif
-                                    <strong>Date de mesure:</strong> {{ $mesure->mesured_at }}
-                                </div>
-                            @endforeach
+<div class="row1">
+    <div class="patient-show">
+            <h2>Résumé administratif</h2>
+            <p>Nom: {{$patient->name}}</p>
+            <p>Prénom: {{$patient->firstname}}</p>
+            <p>Date de naissance : {{$patient->birth_date}} </p>
+            <p>Service : 
+                @foreach ($patient->services as $service)
+                    {{ $service->name }},
+                @endforeach
+            </p>
+            <p>Date d'entrée : {{$serviceInfo->pivot->date_entry}}</p>
+            <p>Motif de prise en charge : {{$serviceInfo->pivot->reason_hospitalization}} </p>
+            <p>Allergies : 
+                @foreach ($patient->allergies as $allergy)
+                    {{ $allergy->label }},
+                @endforeach
+            </p>
+            <p>Antécédents : 
+                @foreach ($patient->medical_histories as $medical_history)
+                    {{ $medical_history->label }},
+                @endforeach
+            </p>
+            <p>Médications : 
+                @foreach ($patient->medications as $medication)
+                    {{ $medication->label }},
+                @endforeach
+            </p>
+        <div class="button-container flex">
+            <form action="{{ route('patient.edit', ['patient' => $patient->id]) }}" method="GET">
+                <button type="submit" class="shadow bg-gray-300 hover:bg-gray-400 focus:shadow-outline focus:outline-none text-gray-800 font-bold py-2 px-4 rounded mr-4">Modifier profil</button>
+            </form>
+            <form action="{{ route('disable', ['patient' => $patient->id]) }}" method="GET">
+                <button type="submit" class="shadow bg-red-300 hover:bg-red-400 focus:shadow-outline focus:outline-none text-gray-800 font-bold py-2 px-4 rounded">Désactiver patient</button>
+            </form>
+        </div>
+    </div>
+    <div class="measurement-list encard">
+                    <h2>Mesures prises</h2>
+                    @foreach($mesures as $mesure)
+                        <div class="mesure-card">
+                            <strong>Type:</strong> <br>
+                            @if($mesure->temperature)
+                                Température: {{ $mesure->temperature }}°C <br>
+                            @endif
+                            @if($mesure->systole && $mesure->diastole)
+                                Tension: {{ $mesure->systole }}/{{ $mesure->diastole }} mmHg <br>
+                            @endif
+                            @if($mesure->oxygen_saturation)
+                                Saturation: {{ $mesure->oxygen_saturation }}% <br>
+                            @endif
+                            @if($mesure->pulse)
+                                Pouls: {{ $mesure->pulse }} bpm <br>
+                            @endif
+                            @if($mesure->blood_sugar)
+                                Glyécmie: {{ $mesure->blood_sugar }} mg/dL <br>
+                            @endif
+                            <strong>Date de mesure:</strong> {{ $mesure->mesured_at }}
                         </div>
-            <div class="add_mesures">
-                @include('site.addMesure')
-            </div>
-        </div>
-        <div class="row2">
-                @include('site.charts')
-        </div>
-   
+                    @endforeach
+                </div>
+    <div class="add_mesures">
+        @include('site.addMesure')
     </div>
 </div>
+<div class="charts">
+        @include('site.charts')
+</div>
+
 @endsection
