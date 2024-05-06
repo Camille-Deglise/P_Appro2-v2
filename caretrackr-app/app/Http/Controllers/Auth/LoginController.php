@@ -5,9 +5,13 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class LoginController extends Controller
 {
+    /**
+     * Méthode d'affichage du formulaire de connexion ou 
+     */
     public function showLoginForm()
     {
         if (Auth::check()) {
@@ -15,37 +19,54 @@ class LoginController extends Controller
         }
         return view("auth.login");
     }
+
+
+    /**
+     * Méthode pour déconnecter l'utilisateur
+     */
     public function logout()
     {
         Auth::logout();
         return to_route('login')->with('success','Vous êtes bien déconnecté');
     }
+
+
+
+    /**
+     * Méthode pour le login de l'utilisateur
+     * Va vérifier si l'email de l'utilisateur est vérifié
+     * Va vérifier si les crédentiels de l'utilisateur sont :
+     * Reconnus dans la base de données
+     * Valides 
+     */
     public function doLogin(LoginRequest $request) {
-        //Vérification des données avec méthode validated et enregistrement dans une variable
-        $crendentials = $request->validated();
+        // Vérification des données avec méthode validated et enregistrement dans une variable
+        $credentials = $request->validated();
         
-        //Condition d'autorisation pour la connexion 
-        if (Auth::attempt($crendentials))     //Les identifiants entrés sont présents dans la db
-        {
-            $user = Auth::user();                   //L'utilisateur est authentifié dans une variable.
-
-                if($user ->email_verified_at != null) //Si l'utilisateur a son email vérifié 
-                {
-                    $request ->session()->regenerate();
-                    return redirect()->route('home');
-
-                }
-                else                                                    //Si l'email n'est pas vérifié, Déconnexion de l'utilisateur 
-                {
-                    Auth::logout();
-                    return redirect()->route('login')->withErrors([
-                        'email' => "Email non vérifié"                      //Affichage de l'erreur
-                    ])->withInput($request->only('email'))->with('message','Veuillez vérifier votre e-mail pour pouvoir vous connecter.');
-                }
+        // Tentative de connexion
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            if($user->email_verified_at != null) {
+                // Utilisateur authentifié avec succès
+                $request->session()->regenerate();
+                return redirect()->route('home')->with('success', 'Vous êtes connecté avec succès.');
+            } else {
+                // Email non vérifié
+                Auth::logout();
+                return redirect()->route('login')->withErrors(['email' => "Email non vérifié"])->withInput($request->only('email'));
+            }
         }
-        return redirect()->route('login')->withErrors([                       //Les idenfitifants ne sont pas reconnus dans la db
-            'email' => 'Identifiants incorrects'
-        ])->withInput($request->only('email'))->with('message','Veuillez entrer des identifiants valides');
+        
+        // Vérification si l'email existe dans la base de données
+        $user = User::where('email', $request->email)->first();
+        if (!$user) {
+            // Email inexistant dans la base de données
+            return redirect()->route('login')->withErrors(['email' => "Email inexistant"])->withInput($request->only('email'));
+        }
+        
+        // Identifiants incorrects
+        return redirect()->route('login')->withErrors(['email' => 'Identifiants incorrects'])->withInput($request->only('email'));
     }
+    
 
 }

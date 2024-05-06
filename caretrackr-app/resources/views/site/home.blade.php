@@ -4,9 +4,9 @@
 
 
 @section('content')
-        <div class="inline-flex  ">
+        <div class="inline-flex">
             <!-- Liste des patients -->
-            <div class=" overflow-auto max-h-96 max-w-max border border-solid border-gray-400 rounded-md mx-8 ">
+            <div class=" overflow-auto max-h-96 w-96 border border-solid border-gray-400 rounded-md mx-8 ">
                 <h1 class="mx-4">Liste des patients suivis</h1>
                 @foreach($patients as $patient)
                     <div class=" mt-2 mx-6">
@@ -22,7 +22,7 @@
             </div>
 
             <!-- Liste des mesures médicales -->
-            <div class="overflow-auto max-h-96 border border-solid border-gray-400 rounded-md mx-8 ">
+            <div class="overflow-auto max-h-96 w-96 border border-solid border-gray-400 rounded-md mx-8 ">
                 <h1 class="mx-4">Liste des 5 dernières mesures médicales</h1>
                 @foreach($mesures as $mesure)
                     <div class="mt-2 mx-6">

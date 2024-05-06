@@ -11,19 +11,16 @@
                     Email
                 </label>
                 <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-grey-500" 
-                    id="email" name="email" type="email" value="{{ old('email') ? old('email') : 'Entrez votre email validé' }}">
-                @error('email')
-                    <div class="text-red-500 mt-2 text-sm">
-                        {{ $message }}
-                    </div>
-                @enderror
+                    id="email" name="email" type="email" 
+                    placeholder="'Entrer votre email validé" value="{{ old('email')}}">
+
             </div>
             <div class="mb-6 flex items-center">
                 <label class="block text-gray-500 font-bold mr-4" for="password" style="min-width: 100px;">
                     Mot de passe
                 </label>
                 <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-grey-500" 
-                    id="password" name="password" type="password" value="Entrez votre mot de passe">
+                    id="password" name="password" type="password" placeholder="Entrez votre mot de passe">
             </div>
             <div class="md:flex md:items-center">
                 <div class="md:w-1/3"></div>
@@ -45,7 +42,7 @@
     @else
         <div class="text-center py-4">
             <p class="text-2xl font-semibold">Vous êtes déjà connecté en tant que {{ Auth::user()->fullName() }}</p>
-            <p class="mt-4"><a href="{{ route('home') }}" class="text-blue-500 hover:underline">Accéder au dashboard</a></p>
+            <p class="mt-4"><a href="{{ route('home') }}" class="text-blue-500 hover:underline">Accéder à la page d'accueil</a></p>
         </div>
     @endguest
 
