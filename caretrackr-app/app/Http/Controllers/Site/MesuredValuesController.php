@@ -27,8 +27,13 @@ class MesuredValuesController extends Controller
 
     public function temperatureChart($mesures)
     {
+        $mesuresFiltred = $mesures->filter(function ($mesures)
+        {
+            return $mesures -> temperature != null;
+        });
+        
         // Vérifier s'il y a au moins trois valeurs de température
-        if ($mesures->pluck('temperature')->count() < 3) {
+        if ($mesuresFiltred->pluck('temperature')->count() < 3) {
         return new NoChartData("Minimum 3 valeurs sont nécessaires pour générer le graphique des températures");
         }
 
@@ -36,10 +41,10 @@ class MesuredValuesController extends Controller
         $tempChart = new MesuresChart;
 
         //Axe X contenant les dates 
-        $dates = $mesures->pluck('mesured_at');
-
+        $dates = $mesuresFiltred->pluck('mesured_at');
+       
         //Axe Y contenant les températures
-        $temperatures = $mesures->pluck('temperature');
+        $temperatures = $mesuresFiltred->pluck('temperature');
 
         //Association des axes X Y pour le graphique
         $tempChart->labels($dates);
@@ -49,18 +54,24 @@ class MesuredValuesController extends Controller
     
     public function saturationChart($mesures)
     {
+        $mesuresFiltred = $mesures->filter(function ($mesures)
+        {
+            return $mesures -> saturation != null;
+        });
+
         // Vérifier s'il y a au moins trois valeurs de température
-        if ($mesures->pluck('oxygen_saturation')->count() < 3) {
+        if ($mesuresFiltred->pluck('oxygen_saturation')->count() < 3) {
+            
             return new NoChartData("Minimum 3 valeurs sont nécessaires pour générer le graphique de la saturation");
-            }
+        }
         //Création nouveau graphique
         $satChart = new MesuresChart;
 
         //Axe X contenant les dates 
-        $dates = $mesures->pluck('mesured_at');
+        $dates = $mesuresFiltred->pluck('mesured_at');
 
         //Axe Y contenant les températures
-        $saturation = $mesures->pluck('oxygen_saturation');
+        $saturation = $mesuresFiltred->pluck('oxygen_saturation');
 
         //Association des axes X Y pour le graphique
         $satChart->labels($dates);
@@ -70,18 +81,22 @@ class MesuredValuesController extends Controller
 
     public function pulseChart($mesures)
     {
+        $mesuresFiltred = $mesures->filter(function ($mesures)
+        {
+            return $mesures -> pulse != null;
+        });
         // Vérifier s'il y a au moins trois valeurs de température
-        if ($mesures->pluck('pulse')->count() < 3) {
+        if ($mesuresFiltred->pluck('pulse')->count() < 3) {
             return new NoChartData("Minimum 3 valeurs sont nécessaires pour générer le graphique des pulsations");
             }
         //Création nouveau graphique
         $pulseChart = new MesuresChart;
 
         //Axe X contenant les dates 
-        $dates = $mesures->pluck('mesured_at');
+        $dates = $mesuresFiltred->pluck('mesured_at');
 
         //Axe Y contenant les pulsations
-        $pulses = $mesures->pluck('pulse');
+        $pulses = $mesuresFiltred->pluck('pulse');
 
         //Association des axes X Y pour le graphique
         $pulseChart->labels($dates);
@@ -91,18 +106,22 @@ class MesuredValuesController extends Controller
 
     public function blood_sugarChart($mesures)
     {
+        $mesuresFiltred = $mesures->filter(function ($mesures)
+        {
+            return $mesures -> blood_sugar != null;
+        });
         // Vérifier s'il y a au moins trois valeurs de température
-        if ($mesures->pluck('blood_sugar')->count() < 3) {
+        if ($mesuresFiltred->pluck('blood_sugar')->count() < 3) {
             return new NoChartData("Minimum 3 valeurs sont nécessaires pour générer le graphique des glycémies");
             }
         //Création nouveau graphique
         $bsChart = new MesuresChart;
 
         //Axe X contenant les dates 
-        $dates = $mesures->pluck('mesured_at');
+        $dates = $mesuresFiltred->pluck('mesured_at');
 
         //Axe Y contenant les glyécmies
-        $bs = $mesures->pluck('blood_sugar');
+        $bs = $mesuresFiltred->pluck('blood_sugar');
 
         //Association des axes X Y pour le graphique
         $bsChart->labels($dates);
@@ -112,19 +131,23 @@ class MesuredValuesController extends Controller
 
     public function tensionChart($mesures)
     {
+        $mesuresFiltred = $mesures->filter(function ($mesures)
+        {
+            return $mesures -> systole != null && $mesures -> diastole != null;
+        });
         // Vérifier s'il y a au moins trois valeurs de température
-        if (($mesures->pluck('systole')->count() < 3) && ($mesures->pluck('diastole')->count()<3)){
+        if (($mesuresFiltred->pluck('systole')->count() < 3) && ($mesures->pluck('diastole')->count()<3)){
             return new NoChartData("Minimum 3 valeurs sont nécessaires pour générer le graphique de la tension");
             }
         //Création nouveau graphique
         $tensionChart = new MesuresChart;
 
         //Axe X contenant les dates 
-        $dates = $mesures->pluck('mesured_at');
+        $dates = $mesuresFiltred->pluck('mesured_at');
 
         //Axe Y contenant les températures
-        $systoles = $mesures->pluck('systole');
-        $diastoles = $mesures->pluck('diastole');
+        $systoles = $mesuresFiltred->pluck('systole');
+        $diastoles = $mesuresFiltred->pluck('diastole');
 
         //Association des axes X Y pour le graphique
         $tensionChart->labels($dates);

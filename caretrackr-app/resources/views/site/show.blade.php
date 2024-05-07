@@ -4,8 +4,8 @@
 
 @section('content')
 
-<div class="row1">
-    <div class="patient-show">
+<div class="inline-flex space-x-8 mb-10">
+    <div class="border-2 rounded-md px-6">
             <h2>Résumé administratif</h2>
             <p>Nom: {{$patient->name}}</p>
             <p>Prénom: {{$patient->firstname}}</p>
@@ -19,7 +19,7 @@
             <p>Motif de prise en charge : {{$serviceInfo->pivot->reason_hospitalization}} </p>
             <p>Allergies : 
                 @foreach ($patient->allergies as $allergy)
-                    {{ $allergy->label }},
+                    <br> {{ $allergy->label }} 
                 @endforeach
             </p>
             <p>Antécédents : 
@@ -32,7 +32,8 @@
                     {{ $medication->label }},
                 @endforeach
             </p>
-        <div class="button-container flex">
+        
+        <div class="flex mt-10 mb-3 ">
             <form action="{{ route('patient.edit', ['patient' => $patient->id]) }}" method="GET">
                 <button type="submit" class="shadow bg-gray-300 hover:bg-gray-400 focus:shadow-outline focus:outline-none text-gray-800 font-bold py-2 px-4 rounded mr-4">Modifier profil</button>
             </form>
@@ -41,11 +42,12 @@
             </form>
         </div>
     </div>
-    <div class="measurement-list encard">
+    <div class="border-2 rounded-md overflow-auto h-96 mb-3 px-4">
                     <h2>Mesures prises</h2>
                     @foreach($mesures as $mesure)
                         <div class="mesure-card">
-                            <strong>Type:</strong> <br>
+                            <i>Date de mesure:</i> {{ $mesure->mesured_at }}
+                            <p>Type</p>
                             @if($mesure->temperature)
                                 Température: {{ $mesure->temperature }}°C <br>
                             @endif
@@ -61,7 +63,7 @@
                             @if($mesure->blood_sugar)
                                 Glyécmie: {{ $mesure->blood_sugar }} mg/dL <br>
                             @endif
-                            <strong>Date de mesure:</strong> {{ $mesure->mesured_at }}
+                            
                         </div>
                     @endforeach
                 </div>

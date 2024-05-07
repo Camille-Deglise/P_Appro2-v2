@@ -5,9 +5,9 @@
 @auth
 
     <div class="flex space-x-4 items-center">
-        <div id="mes-suivis" class="relative">
+        <div id="mes-suivis" class="relative ">
             <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Mes suivis</a>
-            <div class="absolute hidden bg-gray-500 rounded-md shadow-md">
+            <div class=" absolute hidden bg-gray-500 rounded-md shadow-md">
                 <ul>
                     @foreach ($patients as $patient)
                         <li>
@@ -20,6 +20,9 @@
 
         <div class="flex space-x-4"> 
             <a href="{{ route('patient.create') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Ajouter patient</a>
+            <a href="{{route ('addMedication')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Ajouter des médicaments</a>
+            <a href="{{route ('addAllergy')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Ajouter des allergies</a>
+            <a href="{{route ('addMedical_History')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Ajouter des antécédents</a>
             <a href="{{ route('import')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Importer des données</a>
             <a href="{{ route('setting.edit') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Mon profil</a>
         </div>

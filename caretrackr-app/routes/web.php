@@ -9,6 +9,7 @@ use App\Http\Controllers\Site\ImportController;
 use App\Http\Controllers\Site\MesuredValuesController;
 use App\Http\Controllers\Site\PatientController;
 use App\Http\Controllers\Site\SettingController;
+use App\Http\Controllers\Site\AddMedicationController;
 use Illuminate\Http\Request;
 
 /*
@@ -77,6 +78,8 @@ Route::post('/import/process', [ImportController::class, 'process'])->name('impo
 
 /*--------------------Routes gérant l'ajout de mesures à un patient------------------------*/
 Route::post('/patient/{id}/addMesures', [MesuredValuesController::class, 'addMesures'])->name('addMesures');
+
+Route::get('/addMedication', [AddMedicationController::class, 'showForm'])->name('addMedication');
 
 
 

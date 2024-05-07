@@ -12,6 +12,7 @@ use App\Models\Medication;
 use App\Models\Patient;
 use aPP\Models\MesuredValue;
 use App\Charts\MesuresChart;
+use App\Util\NoChartData;
 
 
 class PatientController extends Controller
@@ -120,6 +121,8 @@ class PatientController extends Controller
         $bsChart = app(MesuredValuesController::class)->blood_sugarChart($mesures);
         $tensChart = app(MesuredValuesController::class)->tensionChart($mesures);
 
+    
+
             // Passer les valeurs à la vue
             return view('site.show', [
                 'patient' => $patient,
@@ -129,7 +132,8 @@ class PatientController extends Controller
                 'satchart' => $satChart,
                 'pulsechart' => $pulseChart,
                 'bschart' =>$bsChart,
-                'tenschart' =>$tensChart
+                'tenschart' =>$tensChart,
+             
             ]);
         }
 

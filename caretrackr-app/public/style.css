@@ -8,7 +8,7 @@
 
 /* Styles pour les balises de titre */
 h1, h2, h3, h4, h5, h6 {
-    font-weight: bold; /* Police en gras */
+    font-weight: bold;
     margin-top: 15px;
     margin-bottom: 5px;
 }
@@ -22,11 +22,5 @@ textarea {
 }
 
 
-/* Styles pour le conteneur des boutons */
-.button-container {
-    display: flex; /* Affichage en mode flexbox */
-    align-items: center; /* Alignement vertical au centre */
-    margin-top: 15px;
-}
 
 

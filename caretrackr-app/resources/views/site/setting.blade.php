@@ -1,8 +1,7 @@
 @extends('base')
 @section('title', 'Mon profil')
-@section('page-title', 'Mon profil')
+@section('page-title', 'Modifier mon profil')
 @section('content')
-<h1>Modifier mon profil</h1>
 
 <form class="w-full max-w-sm mx-auto" action="{{route('setting.update', $user->id)}}" method="POST">
     @csrf

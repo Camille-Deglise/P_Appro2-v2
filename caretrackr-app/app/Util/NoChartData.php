@@ -10,4 +10,6 @@ class NoChartData
     {
         $this->message = $message;
     }
+
+    
 }

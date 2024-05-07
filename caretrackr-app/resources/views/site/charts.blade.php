@@ -1,4 +1,5 @@
-<div class="charts">
+<h2 class="text-center  bg-gray-200 mb-6">Graphiques des mesures </h2>
+<div class="inline-flex space-x-40">
 
     @if($tempchart instanceof \App\Util\NoChartData)
         <p>{{ $tempchart->message }}</p>
@@ -20,16 +21,6 @@
         </div>
     @endif
         
-   @if ($pulsechart instanceof \App\Util\NoChartData)
-        <p>{{$pulsechart->message}}</p>
-   @else
-        <div class="pulse-chart">
-
-            {!! $pulsechart->container() !!}
-            
-            {!! $pulsechart->script() !!} 
-        </div>
-   @endif
    
    @if ($bschart instanceof \App\Util\NoChartData)
         <p>{{$bschart->message}}</p>
@@ -40,7 +31,9 @@
             {!! $bschart->script() !!} 
     </div>
    @endif
-    
+</div>
+
+<div class="inline-flex space-x-40">
    @if ($tenschart instanceof \App\Util\NoChartData)
         <p>{{$tenschart->message}}</p>
    @else
@@ -50,5 +43,16 @@
             {!! $tenschart->script() !!}  
         </div>
    @endif
-    
+
+   @if ($pulsechart instanceof \App\Util\NoChartData)
+   <p>{{$pulsechart->message}}</p>
+    @else
+   <div class="pulse-chart">
+
+       {!! $pulsechart->container() !!}
+       
+       {!! $pulsechart->script() !!} 
+   </div>
+    @endif
 </div>
+
